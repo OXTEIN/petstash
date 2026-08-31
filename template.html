@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stashio</title>
+<style>
+  :root{
+    color-scheme:light;
+    --bg:#eef6ff; --bg2:#dcecff; --card:#ffffff; --card2:#f4f8ff; --tint:#e8eefb;
+    --ink:#1f2a44; --muted:#6b7a99; --line:#e2e9f5;
+    --brand:#5b8def; --brand-d:#3f6fd6;
+    --common:#8aa0b8; --uncommon:#3fb96a; --rare:#3a8be0; --ultra:#a25ce6; --legendary:#f0a51e;
+    --teal:#12b3a3; --teal-bg:#d9f7f2; --teal-ink:#0b8a7d; --teal-bd:#a5e8df;
+    --note-bg:#fff6e2; --note-bd:#f2d99a; --note-ink:#8a6400;
+    --danger:#c0455b; --danger-bg:#ffeaef; --danger-bd:#f5c6d1;
+    --own1:#f2fff6; --own2:#eafff1;
+    --toast-bg:#1f2a44; --toast-ink:#ffffff;
+    --shadow:0 6px 18px rgba(40,70,130,.10);
+  }
+  :root[data-theme="dark"]{
+    color-scheme:dark;
+    --bg:#0f1729; --bg2:#131d33; --card:#1a2338; --card2:#222d45; --tint:#222d45;
+    --ink:#e8eef8; --muted:#93a2c0; --line:#2e3a56;
+    --brand:#6f9bf0; --brand-d:#8fb2f6;
+    --uncommon:#43c777; --rare:#4d97e6; --ultra:#b06ef0; --legendary:#f5b53a;
+    --teal:#19c2b1; --teal-bg:#12352f; --teal-ink:#67d9cc; --teal-bd:#1f5e56;
+    --note-bg:#3a2f16; --note-bd:#5c4a1f; --note-ink:#f0cf88;
+    --danger:#ff8098; --danger-bg:#3a1f27; --danger-bd:#5c2f3a;
+    --own1:#15271c; --own2:#112016;
+    --toast-bg:#2b3a58; --toast-ink:#ffffff;
+    --shadow:0 6px 18px rgba(0,0,0,.35);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme:dark;
+      --bg:#0f1729; --bg2:#131d33; --card:#1a2338; --card2:#222d45; --tint:#222d45;
+      --ink:#e8eef8; --muted:#93a2c0; --line:#2e3a56;
+      --brand:#6f9bf0; --brand-d:#8fb2f6;
+      --uncommon:#43c777; --rare:#4d97e6; --ultra:#b06ef0; --legendary:#f5b53a;
+      --teal:#19c2b1; --teal-bg:#12352f; --teal-ink:#67d9cc; --teal-bd:#1f5e56;
+      --note-bg:#3a2f16; --note-bd:#5c4a1f; --note-ink:#f0cf88;
+      --danger:#ff8098; --danger-bg:#3a1f27; --danger-bd:#5c2f3a;
+      --own1:#15271c; --own2:#112016;
+      --toast-bg:#2b3a58; --toast-ink:#ffffff;
+      --shadow:0 6px 18px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{font-family:"Baloo 2",ui-rounded,"Nunito","Segoe UI",system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--bg),var(--bg2)) fixed;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:18px 16px 80px;position:relative}
+
+  .themebtn{position:fixed;top:14px;right:14px;z-index:100;width:44px;height:44px;border-radius:50%;border:2px solid var(--line);background:var(--card);color:var(--ink);font-size:19px;cursor:pointer;box-shadow:var(--shadow)}
+  .themebtn:hover{border-color:var(--brand)}
+
+  header.top{text-align:center;padding:22px 12px 8px}
+  header.top h1{margin:0;font-size:clamp(26px,5vw,44px);font-weight:800;letter-spacing:.3px;color:var(--brand-d);text-shadow:0 2px 0 rgba(255,255,255,.35)}
+  header.top p{margin:6px 0 0;color:var(--muted);font-weight:600}
+
+  .modebar{display:flex;gap:6px;justify-content:center;margin:14px auto 2px;background:var(--tint);padding:5px;border-radius:16px;width:max-content;border:1px solid var(--line)}
+  .modebtn{font:inherit;font-weight:800;border:0;background:transparent;color:var(--brand-d);padding:9px 20px;border-radius:12px;cursor:pointer}
+  .modebtn[data-active="1"]{background:var(--card);color:var(--brand-d);box-shadow:var(--shadow)}
+  body[data-mode="prices"] .progress-card{display:none}
+  body[data-mode="collection"] .vchips,
+  body[data-mode="collection"] .vpresets{display:none}
+  .prices-note{display:none;background:var(--note-bg);border:1px solid var(--note-bd);color:var(--note-ink);border-radius:16px;padding:12px 16px;margin:12px 0 4px;font-weight:600;font-size:13.5px}
+  body[data-mode="prices"] .prices-note{display:block}
+
+  /* portfolios bar */
+  .folios{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0 2px}
+  .folio{font:inherit;font-weight:800;font-size:13.5px;border:2px solid var(--line);background:var(--card);color:var(--ink);padding:7px 13px;border-radius:999px;cursor:pointer}
+  .folio[data-active="1"]{background:var(--brand);color:#fff;border-color:transparent}
+  .folio .fc{opacity:.7;font-weight:700;margin-left:5px}
+  .folio-new{font:inherit;font-weight:800;font-size:13.5px;border:2px dashed var(--line);background:transparent;color:var(--muted);padding:7px 13px;border-radius:999px;cursor:pointer}
+  .folio-edit{font:inherit;font-weight:700;font-size:12.5px;border:0;background:transparent;color:var(--muted);cursor:pointer;padding:4px 6px}
+  .folio-edit:hover{color:var(--brand-d)}
+
+  .progress-card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:16px 18px;margin:14px 0}
+  .progress-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+  .progress-top .big{font-size:22px;font-weight:800}
+  .progress-top .big span{color:var(--brand-d)}
+  .progress-top .big .copies{font-size:14px;color:var(--muted);font-weight:700}
+  .progress-top .pct{font-weight:800;color:var(--uncommon)}
+  .bar{height:16px;border-radius:999px;background:var(--tint);overflow:hidden;margin-top:10px;border:1px solid var(--line)}
+  .bar>i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#57c983,#3fb96a);transition:width .35s ease}
+  .rar-mini{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .rar-mini .chipstat{font-size:12.5px;font-weight:700;padding:5px 10px;border-radius:999px;background:var(--card2);border:1px solid var(--line)}
+  .rar-mini .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
+
+  .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:8px 0 6px}
+  .search{flex:1 1 240px;min-width:200px;display:flex;align-items:center;gap:8px;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:var(--shadow)}
+  .search:focus-within{border-color:var(--brand)}
+  .search input{border:0;outline:0;font:inherit;font-weight:600;width:100%;background:transparent;color:var(--ink)}
+  .search svg{flex:none;opacity:.6}
+  select.sort{font:inherit;font-weight:700;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:14px;padding:10px 12px;box-shadow:var(--shadow);cursor:pointer}
+  .btn{font:inherit;font-weight:800;border:0;border-radius:14px;padding:11px 16px;cursor:pointer;background:var(--brand);color:#fff;box-shadow:var(--shadow);white-space:nowrap}
+  .btn:hover{filter:brightness(1.05)}
+  .btn.ghost{background:var(--card);color:var(--brand-d);border:2px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--brand)}
+
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px}
+  .chip{font:inherit;font-weight:700;font-size:14px;border:2px solid var(--line);background:var(--card);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer}
+  .chip[data-active="1"]{color:#fff;border-color:transparent}
+  .chip[data-r="all"][data-active="1"]{background:var(--brand)}
+  .chip[data-r="common"][data-active="1"]{background:var(--common)}
+  .chip[data-r="uncommon"][data-active="1"]{background:var(--uncommon)}
+  .chip[data-r="rare"][data-active="1"]{background:var(--rare)}
+  .chip[data-r="ultra_rare"][data-active="1"]{background:var(--ultra)}
+  .chip[data-r="legendary"][data-active="1"]{background:var(--legendary)}
+  .chip .n{opacity:.65;font-weight:700;margin-left:4px}
+
+  .vchips{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:6px 0 4px}
+  .vlabel{font-weight:800;font-size:13px;color:var(--muted)}
+  .vchip{font:inherit;font-weight:800;font-size:15px;min-width:40px;height:40px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+  .vchip[data-active="1"]{background:var(--teal);border-color:var(--teal);color:#fff}
+  .vcode{font-weight:800;font-size:13px;color:var(--teal-ink);background:var(--teal-bg);border:1px solid var(--teal-bd);padding:5px 10px;border-radius:999px;display:none}
+  .vchips[data-any="1"] .vcode{display:inline-block}
+  .vclear{font-weight:700;font-size:12.5px;color:var(--danger);cursor:pointer;display:none}
+  .vchips[data-any="1"] .vclear{display:inline}
+  .vpresets{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 6px}
+  .vpreset{font:inherit;font-weight:800;font-size:13px;border:2px dashed var(--teal-bd);background:var(--teal-bg);color:var(--teal-ink);padding:6px 13px;border-radius:999px;cursor:pointer}
+  .vpreset:hover{filter:brightness(1.05)}
+
+  .meta{display:flex;align-items:center;gap:8px;color:var(--muted);font-weight:700;font-size:14px;margin:10px 2px}
+  .ownseg{display:inline-flex;gap:4px;margin-left:auto;background:var(--tint);border:1px solid var(--line);border-radius:10px;padding:3px}
+  .ownseg button{font:inherit;font-weight:700;font-size:13px;border:0;background:transparent;color:var(--ink);padding:5px 12px;border-radius:8px;cursor:pointer}
+  .ownseg button[data-active="1"]{background:var(--card);color:var(--brand-d);box-shadow:var(--shadow)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-top:6px}
+  .pet{position:relative;background:var(--card);border:2px solid var(--line);border-radius:18px;padding:12px 10px 10px;text-align:center;cursor:pointer;box-shadow:var(--shadow);transition:transform .12s ease,border-color .12s ease}
+  .pet:hover{transform:translateY(-3px)}
+  .pet[data-owned="1"]{border-color:var(--uncommon);background:linear-gradient(180deg,var(--own1),var(--own2))}
+  .pet .imgwrap{height:96px;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+  .pet img{max-height:96px;max-width:100%;object-fit:contain}
+  .pet .noimg{font-size:40px}
+  .pet .pname{font-weight:800;font-size:14px;line-height:1.2;min-height:34px;display:flex;align-items:center;justify-content:center}
+  .pet .rtag{display:inline-block;margin-top:7px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:#fff;padding:3px 9px;border-radius:999px}
+  .rtag[data-r="common"]{background:var(--common)}
+  .rtag[data-r="uncommon"]{background:var(--uncommon)}
+  .rtag[data-r="rare"]{background:var(--rare)}
+  .rtag[data-r="ultra_rare"]{background:var(--ultra)}
+  .rtag[data-r="legendary"]{background:var(--legendary)}
+  .pet .check{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;border:2px solid var(--line);background:var(--card);display:flex;align-items:center;justify-content:center;font-weight:900;color:transparent;font-size:15px}
+  .pet[data-owned="1"] .check{background:var(--uncommon);border-color:var(--uncommon);color:#fff}
+  .pet .tagbtn{position:absolute;top:8px;left:8px;width:26px;height:26px;border-radius:8px;border:2px solid var(--line);background:var(--card);cursor:pointer;font-size:12px;line-height:1;display:flex;align-items:center;justify-content:center;padding:0}
+  .pet .tagbtn:hover{border-color:var(--brand)}
+  .pet[data-infolio="1"] .tagbtn{background:var(--brand);border-color:var(--brand)}
+  .pet .stepper{display:none;align-items:center;justify-content:center;gap:6px;margin-top:8px}
+  .pet[data-owned="1"] .stepper{display:flex}
+  .pet .stepper button{width:26px;height:26px;border-radius:8px;border:2px solid var(--line);background:var(--card);color:var(--ink);font-weight:900;font-size:16px;line-height:1;cursor:pointer;padding:0}
+  .pet .stepper button:hover{border-color:var(--brand)}
+  .pet .qty{font-weight:800;font-size:14px;color:var(--uncommon);min-width:34px}
+  .pet .price-btn{display:none;margin-top:8px;width:100%;font:inherit;font-weight:800;font-size:12.5px;border:0;border-radius:10px;padding:8px 6px;background:var(--brand);color:#fff;cursor:pointer}
+  .pet .price-btn:hover{filter:brightness(1.05)}
+  body[data-mode="prices"] .pet{cursor:default}
+  body[data-mode="prices"] .pet .price-btn{display:block}
+  body[data-mode="prices"] .pet .tagbtn,
+  body[data-mode="prices"] .pet .stepper{display:none}
+  body[data-mode="prices"] .pet .check{pointer-events:none}
+  body[data-mode="prices"] .pet[data-owned="0"] .check{display:none}
+
+  #sentinel{height:1px}
+  .empty{text-align:center;color:var(--muted);font-weight:700;padding:50px 0}
+
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--toast-bg);color:var(--toast-ink);font-weight:700;font-size:14px;padding:12px 18px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.25s;z-index:80;max-width:90vw;text-align:center}
+  .toast[data-show="1"]{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  .modal-bg{position:fixed;inset:0;background:rgba(10,18,35,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:90}
+  .modal-bg[data-open="1"]{display:flex}
+  .modal{background:var(--card);border-radius:22px;box-shadow:0 20px 50px rgba(0,0,0,.4);width:100%;max-width:420px;padding:22px}
+  .modal h3{margin:0 0 4px;font-size:22px;font-weight:800;color:var(--brand-d)}
+  .modal p{margin:0 0 16px;color:var(--muted);font-weight:600;font-size:14px}
+  .choices{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+  .choice{font:inherit;font-weight:800;font-size:14px;border:2px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer}
+  .choice[data-active="1"]{background:var(--brand);color:#fff;border-color:transparent}
+  .newrow{display:flex;gap:8px;margin-bottom:8px}
+  .newrow input{flex:1;font:inherit;font-weight:600;padding:11px 12px;border:2px solid var(--line);border-radius:12px;outline:0;background:var(--card);color:var(--ink)}
+  .newrow input:focus{border-color:var(--brand)}
+  .modal .row{display:flex;gap:10px;margin-top:6px}
+  .modal .row .btn{flex:1}
+  .hint{font-size:12.5px;color:var(--muted);font-weight:600;margin-bottom:12px}
+
+  .backup{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:28px 0 6px}
+  footer{text-align:center;color:var(--muted);font-weight:600;font-size:12.5px;margin-top:10px}
+  footer a{color:var(--danger)}
+</style>
+</head>
+<body>
+<button class="themebtn" id="themeBtn" title="Toggle light/dark mode">🌙</button>
+<div class="wrap">
+  <header class="top">
+    <h1>🐾 Stashio</h1>
+    <p>Track your Adopt Me collection — check off, search and compare prices.</p>
+  </header>
+
+  <div class="modebar">
+    <button class="modebtn" id="modeCollection" data-active="1">🎒 Collection</button>
+    <button class="modebtn" id="modePrices" data-active="0">💰 Prices</button>
+  </div>
+
+  <div class="prices-note">
+    💡 Click a pet and <b>Eldorado opens right on that pet</b>. Tick <b>N/M/F/R</b> (or use a quick preset) and it adds the variant to the search — like <b>Ant MFR</b> or <b>Turtle FR</b>. The green check shows which ones you own. Prices come from Eldorado and change all the time.
+  </div>
+
+  <div class="folios" id="folios"></div>
+
+  <div class="progress-card">
+    <div class="progress-top">
+      <div class="big">You own <span id="ownedCount">0</span> of <span id="totalCount">0</span> pets <span class="copies" id="copies"></span></div>
+      <div class="pct" id="pctText">0 %</div>
+    </div>
+    <div class="bar"><i id="barFill"></i></div>
+    <div class="rar-mini" id="rarMini"></div>
+  </div>
+
+  <div class="controls">
+    <label class="search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+      <input id="search" type="text" placeholder="Search pets by name…" autocomplete="off">
+    </label>
+    <select class="sort" id="sort">
+      <option value="rarity-desc">Rarity: Legendary → Common</option>
+      <option value="name-asc">Name: A → Z</option>
+    </select>
+  </div>
+
+  <div class="chips" id="chips"></div>
+
+  <div class="vchips" id="vchips" data-any="0">
+    <span class="vlabel">Variant:</span>
+    <button class="vchip" data-v="N" title="Neon">N</button>
+    <button class="vchip" data-v="M" title="Mega Neon">M</button>
+    <button class="vchip" data-v="F" title="Fly">F</button>
+    <button class="vchip" data-v="R" title="Ride">R</button>
+    <span class="vcode" id="vcode"></span>
+    <span class="vclear" id="vclear">✕ clear</span>
+  </div>
+  <div class="vpresets" id="vpresets">
+    <span class="vlabel">Quick:</span>
+    <button class="vpreset" data-p="FR">FR</button>
+    <button class="vpreset" data-p="NFR">NFR</button>
+    <button class="vpreset" data-p="MFR">MFR</button>
+  </div>
+
+  <div class="meta">
+    <span><b id="shown">0</b> pets shown</span>
+    <span class="ownseg" id="ownSeg">
+      <button data-o="all" data-active="1">All</button>
+      <button data-o="owned" data-active="0">Owned</button>
+      <button data-o="missing" data-active="0">Missing</button>
+    </span>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <div id="sentinel"></div>
+  <div class="empty" id="empty" style="display:none">Nothing here 🫥 — try a different search, filter or list.</div>
+  <div class="toast" id="toast"></div>
+
+  <div class="backup">
+    <button class="btn ghost" id="exportBtn">⬇️ Download backup</button>
+    <button class="btn ghost" id="importBtn">⬆️ Load backup</button>
+    <input type="file" id="importFile" accept="application/json,.json" hidden>
+  </div>
+  <footer>
+    Your collection is saved in this browser — download a backup just in case.
+    <br><a href="#" id="resetLink" style="font-weight:700">Clear all saved data</a>
+    <br><br><span style="opacity:.85">Stashio is an unofficial fan-made tool. Not affiliated with Adopt Me or Uplift Games. Pet names, images and data belong to their creators. Prices via Eldorado.</span>
+  </footer>
+</div>
+
+<!-- lists modal -->
+<div class="modal-bg" id="listModalBg">
+  <div class="modal">
+    <h3 id="listModalTitle">Add to lists</h3>
+    <p>Pick which of your lists this pet belongs to.</p>
+    <div class="choices" id="listChoices"></div>
+    <div class="newrow">
+      <input id="newFolioName" type="text" placeholder="New list name… (e.g. FOR TRADE)" autocomplete="off">
+      <button class="btn" id="newFolioBtn">+ Create</button>
+    </div>
+    <div class="hint">A pet can be in more than one list.</div>
+    <div class="row"><button class="btn" id="listDone">Done</button></div>
+  </div>
+</div>
+
+<script>
+/* ---------- data ---------- */
+const BASE_PETS = __PETS_JSON__;
+const RARITY_ORDER = ["common","uncommon","rare","ultra_rare","legendary"];
+const RARITY_LABEL = {common:"Common",uncommon:"Uncommon",rare:"Rare",ultra_rare:"Ultra-Rare",legendary:"Legendary"};
+const RARITY_COLOR = {common:"#8aa0b8",uncommon:"#3fb96a",rare:"#3a8be0",ultra_rare:"#a25ce6",legendary:"#f0a51e"};
+
+const LS_COUNTS="am_counts_v2", LS_FOLIOS="am_folios_v1", LS_FITEMS="am_folioitems_v1",
+      LS_VAR="am_var_v1", LS_UI="am_ui_v2", LS_THEME="am_theme_v1";
+const ELDORADO_URL="https://www.eldorado.gg/adopt-me-pets/i/201-2-0";
+
+function loadLS(k,d){ try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;} }
+function saveLS(k,v){ try{localStorage.setItem(k,JSON.stringify(v));}catch(e){} }
+
+let counts=loadLS(LS_COUNTS,{});            // {petName: number}
+let folios=loadLS(LS_FOLIOS,[]);            // [{id,name}]
+let fitems=loadLS(LS_FITEMS,{});            // {folioId:{petName:true}}
+let variant=loadLS(LS_VAR,{N:false,M:false,F:false,R:false});
+let ui=loadLS(LS_UI,{});
+
+function countOf(k){ return counts[k]||0; }
+function isOwned(k){ return countOf(k)>0; }
+function inFolio(fid,k){ return !!(fitems[fid] && fitems[fid][k]); }
+function petFolioCount(k){ let n=0; for(const f of folios){ if(inFolio(f.id,k)) n++; } return n; }
+
+/* ---------- theme ---------- */
+const themeBtn=document.getElementById('themeBtn');
+let theme=loadLS(LS_THEME,"auto");
+function systemDark(){ return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; }
+function isDark(){ return theme==="dark" || (theme==="auto" && systemDark()); }
+function applyTheme(){
+  const root=document.documentElement;
+  if(theme==="auto") root.removeAttribute('data-theme'); else root.setAttribute('data-theme',theme);
+  themeBtn.textContent = isDark() ? "☀️" : "🌙";
+}
+themeBtn.addEventListener('click',()=>{ theme=isDark()?"light":"dark"; saveLS(LS_THEME,theme); applyTheme(); });
+if(window.matchMedia){ try{ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{ if(theme==="auto") applyTheme(); }); }catch(e){} }
+applyTheme();
+
+/* ---------- state ---------- */
+let mode = ui.mode==="prices" ? "prices":"collection";
+let filterR = ui.filterR || "all";
+let query = ui.query || "";
+let sortMode = (ui.sortMode==="name-asc") ? "name-asc" : "rarity-desc";
+let ownFilter = ["owned","missing"].includes(ui.ownFilter) ? ui.ownFilter : "all";
+let folioFilter = ui.folioFilter || null;   // folio id or null (All pets)
+if(folioFilter && !folios.some(f=>f.id===folioFilter)) folioFilter=null;
+function saveUI(){ saveLS(LS_UI,{mode,filterR,query,sortMode,ownFilter,folioFilter}); }
+
+function allPets(){ return BASE_PETS.map(p=>({key:p.n,n:p.n,r:p.r,t:p.t})); }
+
+/* ---------- refs ---------- */
+const grid=document.getElementById('grid');
+const emptyEl=document.getElementById('empty');
+const sentinel=document.getElementById('sentinel');
+const ownSeg=document.getElementById('ownSeg');
+
+/* ---------- filter / sort ---------- */
+function petMatches(p){
+  if(filterR!=="all" && p.r!==filterR) return false;
+  if(ownFilter==="missing" && isOwned(p.key)) return false;
+  if(ownFilter==="owned" && !isOwned(p.key)) return false;
+  if(folioFilter && !inFolio(folioFilter,p.key)) return false;
+  if(query && !p.n.toLowerCase().includes(query)) return false;
+  return true;
+}
+function sortPets(arr){
+  const byName=(a,b)=>a.n.toLowerCase().localeCompare(b.n.toLowerCase());
+  const rIdx=p=>RARITY_ORDER.indexOf(p.r);
+  if(sortMode==="name-asc") arr.sort(byName);
+  else arr.sort((a,b)=>rIdx(b)-rIdx(a)||byName(a,b));
+  return arr;
+}
+
+/* ---------- lazy rendering ---------- */
+let currentList=[], renderedCount=0;
+const BATCH=120;
+
+function makeCard(p){
+  const el=document.createElement('div');
+  el.className="pet";
+  el.dataset.owned=isOwned(p.key)?"1":"0";
+  el.dataset.infolio=petFolioCount(p.key)>0?"1":"0";
+  el.dataset.key=p.key;
+  const img=p.t
+    ? `<img src="${escapeAttr(p.t)}" alt="" loading="lazy" onerror="this.parentNode.innerHTML='<div class=&quot;noimg&quot;>🐾</div>'">`
+    : `<div class="noimg">🐾</div>`;
+  el.innerHTML=`
+    <button class="tagbtn" title="Add to lists">🏷</button>
+    <div class="check">✓</div>
+    <div class="imgwrap">${img}</div>
+    <div class="pname">${escapeHtml(p.n)}</div>
+    <span class="rtag" data-r="${p.r}">${RARITY_LABEL[p.r]||p.r}</span>
+    <div class="stepper">
+      <button class="minus" title="Remove one">−</button>
+      <span class="qty">×${countOf(p.key)}</span>
+      <button class="plus" title="Add one">+</button>
+    </div>
+    <button class="price-btn"></button>
+  `;
+  return el;
+}
+function render(){
+  currentList=sortPets(allPets().filter(petMatches));
+  document.getElementById('shown').textContent=currentList.length;
+  emptyEl.style.display=currentList.length?"none":"block";
+  grid.innerHTML=""; renderedCount=0;
+  renderMore(); updateProgress();
+}
+function renderMore(){
+  const slice=currentList.slice(renderedCount,renderedCount+BATCH);
+  const frag=document.createDocumentFragment();
+  for(const p of slice) frag.appendChild(makeCard(p));
+  grid.appendChild(frag);
+  renderedCount+=slice.length;
+  updatePriceButtons();
+}
+const io=new IntersectionObserver((es)=>{ if(es[0].isIntersecting && renderedCount<currentList.length) renderMore(); },{rootMargin:"800px"});
+io.observe(sentinel);
+
+function updateProgress(){
+  const pets=allPets();
+  const total=pets.length;
+  let ownedN=0, copies=0;
+  const perR={}; RARITY_ORDER.forEach(r=>perR[r]={o:0,t:0});
+  for(const p of pets){
+    if(!perR[p.r]) perR[p.r]={o:0,t:0};
+    perR[p.r].t++;
+    const c=countOf(p.key);
+    if(c>0){ ownedN++; perR[p.r].o++; copies+=c; }
+  }
+  document.getElementById('ownedCount').textContent=ownedN;
+  document.getElementById('totalCount').textContent=total;
+  document.getElementById('copies').textContent = copies>ownedN ? ("· "+copies+" copies total") : "";
+  const pct=total?Math.round(ownedN/total*100):0;
+  document.getElementById('pctText').textContent=pct+" %";
+  document.getElementById('barFill').style.width=pct+"%";
+  document.getElementById('rarMini').innerHTML=RARITY_ORDER.map(r=>
+    `<span class="chipstat"><span class="dot" style="background:${RARITY_COLOR[r]}"></span>${RARITY_LABEL[r]}: ${perR[r].o}/${perR[r].t}</span>`).join("");
+  document.querySelectorAll('.chip').forEach(c=>{
+    const r=c.dataset.r;
+    const n=r==="all"?total:(perR[r]?perR[r].t:0);
+    const nn=c.querySelector('.n'); if(nn) nn.textContent=n;
+  });
+}
+
+function updatePriceButtons(){
+  const code=variantCode();
+  const label=code?('💰 Prices · '+code+' →'):'💰 Prices on Eldorado →';
+  grid.querySelectorAll('.price-btn').forEach(b=>b.textContent=label);
+}
+
+/* ---------- counts ---------- */
+function setCount(key,c,cardEl){
+  if(c<=0){ delete counts[key]; } else { counts[key]=c; }
+  saveLS(LS_COUNTS,counts);
+  if(cardEl){
+    cardEl.dataset.owned=isOwned(key)?"1":"0";
+    const q=cardEl.querySelector('.qty'); if(q) q.textContent="×"+countOf(key);
+  }
+  updateProgress();
+  // if a filter hides/shows this pet based on owned status, re-render
+  if(ownFilter!=="all") render();
+}
+function inc(key,cardEl){ setCount(key,countOf(key)+1,cardEl); }
+function dec(key,cardEl){ setCount(key,countOf(key)-1,cardEl); }
+
+/* ---------- rarity chips ---------- */
+function buildChips(){
+  const chips=document.getElementById('chips');
+  const defs=[["all","All"]].concat(RARITY_ORDER.map(r=>[r,RARITY_LABEL[r]]));
+  chips.innerHTML=defs.map(([r,label])=>`<button class="chip" data-r="${r}" data-active="${r===filterR?1:0}">${label}<span class="n"></span></button>`).join("");
+  chips.querySelectorAll('.chip').forEach(c=>{
+    c.addEventListener('click',()=>{
+      filterR=c.dataset.r;
+      chips.querySelectorAll('.chip').forEach(x=>x.dataset.active=x===c?"1":"0");
+      saveUI(); render();
+    });
+  });
+}
+
+/* ---------- portfolios ---------- */
+function newId(){ return "f"+Date.now()+Math.floor(Math.random()*999); }
+function buildFolios(){
+  const bar=document.getElementById('folios');
+  let html=`<button class="folio" data-f="__all" data-active="${folioFilter?0:1}">All pets</button>`;
+  for(const f of folios){
+    const cnt=fitems[f.id]?Object.keys(fitems[f.id]).length:0;
+    html+=`<button class="folio" data-f="${f.id}" data-active="${folioFilter===f.id?1:0}">${escapeHtml(f.name)}<span class="fc">${cnt}</span></button>`;
+  }
+  html+=`<button class="folio-new" id="folioNew">+ New list</button>`;
+  if(folioFilter){ html+=`<button class="folio-edit" id="folioRename">✎ rename</button><button class="folio-edit" id="folioDelete">🗑 delete</button>`; }
+  bar.innerHTML=html;
+  bar.querySelectorAll('.folio').forEach(b=>{
+    b.addEventListener('click',()=>{
+      folioFilter = b.dataset.f==="__all" ? null : b.dataset.f;
+      saveUI(); buildFolios(); render();
+    });
+  });
+  const nb=document.getElementById('folioNew');
+  nb.addEventListener('click',()=>{
+    const name=(prompt("Name your new list (e.g. FOR TRADE):")||"").trim();
+    if(!name) return;
+    const id=newId(); folios.push({id,name}); fitems[id]={};
+    saveLS(LS_FOLIOS,folios); saveLS(LS_FITEMS,fitems);
+    folioFilter=id; saveUI(); buildFolios(); render();
+  });
+  const rn=document.getElementById('folioRename');
+  if(rn) rn.addEventListener('click',()=>{
+    const f=folios.find(x=>x.id===folioFilter); if(!f) return;
+    const name=(prompt("Rename list:",f.name)||"").trim();
+    if(name){ f.name=name; saveLS(LS_FOLIOS,folios); buildFolios(); }
+  });
+  const dl=document.getElementById('folioDelete');
+  if(dl) dl.addEventListener('click',()=>{
+    const f=folios.find(x=>x.id===folioFilter); if(!f) return;
+    if(!confirm('Delete list "'+f.name+'"? (Pets stay in your collection, just not in this list.)')) return;
+    folios=folios.filter(x=>x.id!==folioFilter); delete fitems[folioFilter];
+    saveLS(LS_FOLIOS,folios); saveLS(LS_FITEMS,fitems);
+    folioFilter=null; saveUI(); buildFolios(); render();
+  });
+}
+
+/* ---------- lists modal ---------- */
+const listModalBg=document.getElementById('listModalBg');
+let listPet=null;
+function openLists(key){
+  listPet=key;
+  document.getElementById('listModalTitle').textContent='Add "'+key+'" to lists';
+  renderListChoices();
+  listModalBg.dataset.open="1";
+}
+function closeLists(){
+  listModalBg.dataset.open="0";
+  document.getElementById('newFolioName').value="";
+  buildFolios();
+  render();  // membership may affect current folio view + tag badges
+}
+function renderListChoices(){
+  const box=document.getElementById('listChoices');
+  if(folios.length===0){ box.innerHTML='<span class="hint">No lists yet — create one below 👇</span>'; return; }
+  box.innerHTML=folios.map(f=>`<button class="choice" data-fid="${f.id}" data-active="${inFolio(f.id,listPet)?1:0}">${escapeHtml(f.name)}</button>`).join("");
+  box.querySelectorAll('.choice').forEach(c=>{
+    c.addEventListener('click',()=>{
+      const fid=c.dataset.fid;
+      if(!fitems[fid]) fitems[fid]={};
+      if(fitems[fid][listPet]) delete fitems[fid][listPet]; else fitems[fid][listPet]=true;
+      saveLS(LS_FITEMS,fitems);
+      c.dataset.active=inFolio(fid,listPet)?"1":"0";
+    });
+  });
+}
+document.getElementById('newFolioBtn').addEventListener('click',()=>{
+  const name=document.getElementById('newFolioName').value.trim();
+  if(!name) return;
+  const id=newId(); folios.push({id,name}); fitems[id]={};
+  if(listPet) fitems[id][listPet]=true;
+  saveLS(LS_FOLIOS,folios); saveLS(LS_FITEMS,fitems);
+  document.getElementById('newFolioName').value="";
+  renderListChoices();
+});
+document.getElementById('listDone').addEventListener('click',closeLists);
+listModalBg.addEventListener('click',e=>{ if(e.target===listModalBg) closeLists(); });
+
+/* ---------- variant ---------- */
+function variantCode(){ const neon=variant.M?"M":(variant.N?"N":""); return neon+(variant.F?"F":"")+(variant.R?"R":""); }
+function refreshVarChips(){
+  document.querySelectorAll('.vchip').forEach(c=>c.dataset.active=variant[c.dataset.v]?"1":"0");
+  const code=variantCode();
+  document.getElementById('vchips').dataset.any=code?"1":"0";
+  document.getElementById('vcode').textContent="→ "+code;
+  updatePriceButtons();
+}
+document.querySelectorAll('.vchip').forEach(c=>{
+  c.addEventListener('click',()=>{
+    const v=c.dataset.v; variant[v]=!variant[v];
+    if(v==="N"&&variant.N)variant.M=false;
+    if(v==="M"&&variant.M)variant.N=false;
+    saveLS(LS_VAR,variant); refreshVarChips();
+  });
+});
+document.getElementById('vclear').addEventListener('click',()=>{ variant={N:false,M:false,F:false,R:false}; saveLS(LS_VAR,variant); refreshVarChips(); });
+document.querySelectorAll('.vpreset').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const p=b.dataset.p;
+    variant={N:p==="NFR", M:p==="MFR", F:p.includes("F"), R:p.includes("R")};
+    saveLS(LS_VAR,variant); refreshVarChips();
+  });
+});
+
+/* ---------- grid click ---------- */
+grid.addEventListener('click',(e)=>{
+  const card=e.target.closest('.pet'); if(!card) return;
+  const key=card.dataset.key;
+  if(e.target.closest('.tagbtn')){ e.stopPropagation(); openLists(key); return; }
+  if(e.target.closest('.minus')){ e.stopPropagation(); dec(key,card); return; }
+  if(e.target.closest('.plus')){ e.stopPropagation(); inc(key,card); return; }
+  if(mode==="prices"){ openEldorado(card.querySelector('.pname').textContent); return; }
+  inc(key,card); // click anywhere on the card = +1
+});
+
+/* ---------- controls ---------- */
+document.getElementById('search').addEventListener('input',e=>{query=e.target.value.trim().toLowerCase();saveUI();render();});
+document.getElementById('sort').addEventListener('change',e=>{sortMode=e.target.value;saveUI();render();});
+ownSeg.querySelectorAll('button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    ownFilter=b.dataset.o;
+    ownSeg.querySelectorAll('button').forEach(x=>x.dataset.active=x===b?"1":"0");
+    saveUI(); render();
+  });
+});
+
+/* ---------- mode ---------- */
+const btnCol=document.getElementById('modeCollection');
+const btnPri=document.getElementById('modePrices');
+function setMode(m){
+  mode=m; document.body.dataset.mode=m;
+  btnCol.dataset.active=m==="collection"?"1":"0";
+  btnPri.dataset.active=m==="prices"?"1":"0";
+  saveUI();
+}
+btnCol.addEventListener('click',()=>setMode("collection"));
+btnPri.addEventListener('click',()=>setMode("prices"));
+
+/* ---------- eldorado + toast ---------- */
+let toastT=null;
+function toast(msg){ const el=document.getElementById('toast'); el.textContent=msg; el.dataset.show="1"; clearTimeout(toastT); toastT=setTimeout(()=>el.dataset.show="0",2600); }
+function openEldorado(name){
+  const code=variantCode();
+  const q=code?(name+" "+code):name;
+  const url=ELDORADO_URL+"?searchQuery="+encodeURIComponent(q);
+  toast('💰 Opening prices for "'+q+'" on Eldorado');
+  window.open(url,'_blank','noopener');
+}
+
+/* ---------- backup ---------- */
+function collectSave(){ return {app:"stashio", v:2, date:new Date().toISOString(), counts, folios, fitems, variant}; }
+document.getElementById('exportBtn').addEventListener('click',()=>{
+  const blob=new Blob([JSON.stringify(collectSave(),null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob); a.download='stashio-backup.json';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1500);
+  toast('⬇️ Backup downloaded');
+});
+const importFile=document.getElementById('importFile');
+document.getElementById('importBtn').addEventListener('click',()=>importFile.click());
+importFile.addEventListener('change',e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const rd=new FileReader();
+  rd.onload=()=>{
+    try{
+      const d=JSON.parse(rd.result);
+      if(!d || typeof d!=="object") throw new Error("bad");
+      if(!confirm('Load backup? This will overwrite your current collection and lists.')){ importFile.value=""; return; }
+      if(d.counts && typeof d.counts==="object"){ counts=d.counts; }
+      else if(Array.isArray(d.owned)){ counts={}; d.owned.forEach(k=>counts[k]=1); } // old format
+      else counts={};
+      folios=Array.isArray(d.folios)?d.folios:[];
+      fitems=(d.fitems&&typeof d.fitems==="object")?d.fitems:{};
+      variant=(d.variant&&typeof d.variant==="object")?{N:!!d.variant.N,M:!!d.variant.M,F:!!d.variant.F,R:!!d.variant.R}:{N:false,M:false,F:false,R:false};
+      saveLS(LS_COUNTS,counts); saveLS(LS_FOLIOS,folios); saveLS(LS_FITEMS,fitems); saveLS(LS_VAR,variant);
+      folioFilter=null; saveUI();
+      refreshVarChips(); buildFolios(); render();
+      toast('✅ Backup loaded');
+    }catch(err){ toast("❌ This file doesn't look like a backup"); }
+    importFile.value="";
+  };
+  rd.readAsText(f);
+});
+
+/* ---------- reset ---------- */
+document.getElementById('resetLink').addEventListener('click',e=>{
+  e.preventDefault();
+  if(confirm("Really clear everything — counts and lists? (Better download a backup first.)")){
+    counts={}; folios=[]; fitems={}; folioFilter=null;
+    saveLS(LS_COUNTS,counts); saveLS(LS_FOLIOS,folios); saveLS(LS_FITEMS,fitems); saveUI();
+    buildChips(); buildFolios(); render();
+  }
+});
+
+/* ---------- utils ---------- */
+function escapeHtml(s){ return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+function escapeAttr(s){ return String(s).replace(/["&<>]/g,c=>({'"':'&quot;','&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+/* ---------- apply saved UI ---------- */
+document.getElementById('search').value=query;
+document.getElementById('sort').value=sortMode;
+ownSeg.querySelectorAll('button').forEach(x=>x.dataset.active=x.dataset.o===ownFilter?"1":"0");
+
+/* ---------- init ---------- */
+setMode(mode);
+buildChips();
+buildFolios();
+refreshVarChips();
+render();
+</script>
+</body>
+</html>

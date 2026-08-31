@@ -1,0 +1,14 @@
+# Stashio
+
+Unofficial Adopt Me collection tracker. Not affiliated with Adopt Me or Uplift Games.
+
+- `index.html` — the app (this is what gets served).
+- `template.html` — the app with a `__PETS_JSON__` placeholder.
+- `pets.json` — the current pet data.
+- `scripts/update.mjs` — fetches the latest pets and rebuilds `index.html`.
+- `.github/workflows/update.yml` — runs the updater weekly (and on-demand).
+
+## How auto-update works
+Every Monday (and whenever you trigger it) the GitHub Action fetches the current
+Adopt Me pet list, rebuilds `index.html`, and commits if anything changed.
+Netlify then auto-deploys the new version.

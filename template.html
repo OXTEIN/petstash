@@ -148,9 +148,10 @@
   .pet[data-infolio="1"] .tagbtn{background:var(--brand);border-color:var(--brand)}
   .pet .stepper{display:none;align-items:center;justify-content:center;gap:6px;margin-top:8px}
   .pet[data-owned="1"] .stepper{display:flex}
-  .pet .stepper button{width:26px;height:26px;border-radius:8px;border:2px solid var(--line);background:var(--card);color:var(--ink);font-weight:900;font-size:16px;line-height:1;cursor:pointer;padding:0}
+  .pet .stepper button{width:26px;height:26px;border-radius:8px;border:2px solid var(--line);background:var(--card);color:var(--ink);font-weight:900;font-size:16px;line-height:1;cursor:pointer;padding:0;touch-action:manipulation;user-select:none;-webkit-user-select:none}
   .pet .stepper button:hover{border-color:var(--brand)}
-  .pet .qty{font-weight:800;font-size:14px;color:var(--uncommon);min-width:34px}
+  .pet .qty{font-weight:800;font-size:14px;color:var(--uncommon);min-width:34px;cursor:pointer;user-select:none;-webkit-user-select:none}
+  .pet .qty:hover{text-decoration:underline}
   .pet .price-btn{display:none;margin-top:8px;width:100%;font:inherit;font-weight:800;font-size:12.5px;border:0;border-radius:10px;padding:8px 6px;background:var(--brand);color:#fff;cursor:pointer}
   .pet .price-btn:hover{filter:brightness(1.05)}
   body[data-mode="prices"] .pet{cursor:default}
@@ -448,8 +449,18 @@ function setCount(key,c,cardEl){
   // if a filter hides/shows this pet based on owned status, re-render
   if(ownFilter!=="all") render();
 }
-function inc(key,cardEl){ setCount(key,countOf(key)+1,cardEl); }
-function dec(key,cardEl){ setCount(key,countOf(key)-1,cardEl); }
+function step(key,delta,cardEl){ setCount(key, Math.max(0, countOf(key)+delta), cardEl); }
+
+/* hold + or − to repeat */
+let holdT=null, holdI=null;
+function startHold(key,delta,cardEl){
+  stopHold();
+  step(key,delta,cardEl);                       // one immediate step
+  holdT=setTimeout(()=>{ holdI=setInterval(()=>step(key,delta,cardEl), 90); }, 350);
+}
+function stopHold(){ if(holdT)clearTimeout(holdT); if(holdI)clearInterval(holdI); holdT=holdI=null; }
+window.addEventListener('pointerup', stopHold);
+window.addEventListener('pointercancel', stopHold);
 
 /* ---------- rarity chips ---------- */
 function buildChips(){
@@ -575,14 +586,33 @@ document.querySelectorAll('.vpreset').forEach(b=>{
 });
 
 /* ---------- grid click ---------- */
+/* press-and-hold on + / − */
+grid.addEventListener('pointerdown',(e)=>{
+  const plus=e.target.closest('.plus');
+  const minus=e.target.closest('.minus');
+  if(!plus && !minus) return;
+  const card=e.target.closest('.pet'); if(!card) return;
+  e.preventDefault();
+  startHold(card.dataset.key, plus?1:-1, card);
+});
+
 grid.addEventListener('click',(e)=>{
   const card=e.target.closest('.pet'); if(!card) return;
   const key=card.dataset.key;
-  if(e.target.closest('.tagbtn')){ e.stopPropagation(); openLists(key); return; }
-  if(e.target.closest('.minus')){ e.stopPropagation(); dec(key,card); return; }
-  if(e.target.closest('.plus')){ e.stopPropagation(); inc(key,card); return; }
+  if(e.target.closest('.plus') || e.target.closest('.minus')) return; // handled by hold
+  if(e.target.closest('.tagbtn')){ openLists(key); return; }
+  if(e.target.closest('.qty')){
+    const cur=countOf(key);
+    const val=prompt("How many of this pet do you have?", cur);
+    if(val!==null){ const n=Math.floor(Number(val)); if(!isNaN(n)) setCount(key, Math.max(0,n), card); }
+    return;
+  }
   if(mode==="prices"){ openEldorado(card.querySelector('.pname').textContent); return; }
-  inc(key,card); // click anywhere on the card = +1
+  // click the card body: check / uncheck, with protection when you own many
+  const c=countOf(key);
+  if(c===0) setCount(key,1,card);
+  else if(c===1) setCount(key,0,card);
+  // c>1 → do nothing on purpose (use − to reduce), so you can't wipe 50 by accident
 });
 
 /* ---------- controls ---------- */

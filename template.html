@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stashio</title>
+<meta name="theme-color" content="#5b8def">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Stashio">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAFBElEQVR4nO3dWVbbQBBGYdknCwjrI6sI6yCrCOsjOyAPYI4wGnqoHuqv+70mWG35pugIKbksE3h8fn0bvQbUe3l6uIxew5AFEHAMIwLvdkAijq1X3E0PQsTY0jLuJi9MyEjRIuyr9QsSM1K1aMXsTwgho4bVtDaZ0MSMWlYNVf2pIGS0UDOtiyc0MaOVmraKgiZmtFbaWHbQxIxeSlrLCpqY0Vtuc8lBEzNGyWkvKWhixmipDZ4GTcyYRUqL5j/6BkY6DJrpjNmcNbkbNDFjVkdtsuWAlM2gmc6Y3V6j34ImZnix1SpbDkj5EjTTGd7cN8uEhhSChpTPoNluwKt1u0xoSCFoSLkuC9sN+HdrmAkNKQQNKQQNKRf2z1DChIYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoaUH6MX4MXf3z93f+3Xn39ujqGOezlOHEV2rzS6HseIgi3HgZzQSn5/r2NEQtA7SsPJ+boex4iGoDfUBpPy9T2OERFB37EK5eh1ehwjKoKGFIJesZ54W6/X4xiRETSkEDSkEDSkEDSkEDSkEPSK9X0SW6/X4xiRSd1tt3cJiw/9XYTzI3G3Xeq12NQPzuLa7tmxehwj91gKYbvfcrS4Gaj2g035+h7HWJY+N0vNxHXQLW/XLA0u5+taH6PH7ayzcRt0zYlvFXVJoK2O0eP8zMjlHtrqhOfE5OkRrBHnZxZSVzla6vHhegxoNu62HJbfDj1/a90T/fy4Cxo4QtCQQtCQQtCQQtCQQtCQ4i5oy2u1itd9o58fd0EDR1wGbTE5PE6fVJHPj8ugl6XuhHv9sHJEPT9ug16WPne3eRbx/LgOeln63H/sWbTz4/L20T0RnpmrEeH8SAUNuN9yAGsEDSk8sdIA/wnQOARtwPKBVAKvQ9CFWj2etH5d4s5H0Jl6Pmd3OxZhpyPoRCMfGCXsdAR9YqYnnwn7HJftDswU89qs65oBQe+YPZrZ1zcKQW/wEouXdfZE0He8ReJtva0R9IrXOLyuuwWC/uA9Cu/rt0LQkELQi850U3kfNQgaUsIHrTbV1N5PrvBBQwtBQ0rooFW/Pau+rxShg4YegoYUgoYUgoYUgoYUgoYUgoaU0EGrPmyq+r5ShA4aeggaUsIHrfbtWe395AofNLQQ9KIz1VTeRw2ChhSC/uB9unlfvxWCXvEahdd1t0DQd7zF4W29rRH0Bi+ReFlnTwS9Y/ZYZl/fKAR9YNZoZl3XDPgX/E/c4pnhwVNCPkfQiUaGTcjpCDpTz7AJOR9BF1rHZhk3EdchaAP3EfJfI49D0A0Q6ThctoMUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoaU68vTw2X0IgALL08PFyY0pBA0pBA0pFyX5X3vMXohQI1bw0xoSCFoSPkMmm0HvFq3y4SGFIKGlC9Bs+2AN/fNMqEh5VvQTGl4sdXq5oQmasxur1G2HJCyGzRTGrM6avNwQhM1ZnPWJFsOSDkNmimNWaS0mDShiRqjpTaYvOUgaoyS017WHpqo0Vtuc9l/KSRq9FLSWtFVDqJGa6WNFV+2I2q0UtOWSZSPz69vFq+D2CyGpMkPVpjWqGXVkHmITGvksB6G5j/6ZlojVYtWmsbHtMaWlkOv2zQl7th6fecesj0g7hhGbD+n2O8SuIYZ/v70Hw080Gld7l/NAAAAAElFTkSuQmCC">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAFBElEQVR4nO3dWVbbQBBGYdknCwjrI6sI6yCrCOsjOyAPYI4wGnqoHuqv+70mWG35pugIKbksE3h8fn0bvQbUe3l6uIxew5AFEHAMIwLvdkAijq1X3E0PQsTY0jLuJi9MyEjRIuyr9QsSM1K1aMXsTwgho4bVtDaZ0MSMWlYNVf2pIGS0UDOtiyc0MaOVmraKgiZmtFbaWHbQxIxeSlrLCpqY0Vtuc8lBEzNGyWkvKWhixmipDZ4GTcyYRUqL5j/6BkY6DJrpjNmcNbkbNDFjVkdtsuWAlM2gmc6Y3V6j34ImZnix1SpbDkj5EjTTGd7cN8uEhhSChpTPoNluwKt1u0xoSCFoSLkuC9sN+HdrmAkNKQQNKQQNKRf2z1DChIYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoaUH6MX4MXf3z93f+3Xn39ujqGOezlOHEV2rzS6HseIgi3HgZzQSn5/r2NEQtA7SsPJ+boex4iGoDfUBpPy9T2OERFB37EK5eh1ehwjKoKGFIJesZ54W6/X4xiRETSkEDSkEDSkEDSkEDSkEPSK9X0SW6/X4xiRSd1tt3cJiw/9XYTzI3G3Xeq12NQPzuLa7tmxehwj91gKYbvfcrS4Gaj2g035+h7HWJY+N0vNxHXQLW/XLA0u5+taH6PH7ayzcRt0zYlvFXVJoK2O0eP8zMjlHtrqhOfE5OkRrBHnZxZSVzla6vHhegxoNu62HJbfDj1/a90T/fy4Cxo4QtCQQtCQQtCQQtCQQtCQ4i5oy2u1itd9o58fd0EDR1wGbTE5PE6fVJHPj8ugl6XuhHv9sHJEPT9ug16WPne3eRbx/LgOeln63H/sWbTz4/L20T0RnpmrEeH8SAUNuN9yAGsEDSk8sdIA/wnQOARtwPKBVAKvQ9CFWj2etH5d4s5H0Jl6Pmd3OxZhpyPoRCMfGCXsdAR9YqYnnwn7HJftDswU89qs65oBQe+YPZrZ1zcKQW/wEouXdfZE0He8ReJtva0R9IrXOLyuuwWC/uA9Cu/rt0LQkELQi850U3kfNQgaUsIHrTbV1N5PrvBBQwtBQ0rooFW/Pau+rxShg4YegoYUgoYUgoYUgoYUgoYUgoaU0EGrPmyq+r5ShA4aeggaUsIHrfbtWe395AofNLQQ9KIz1VTeRw2ChhSC/uB9unlfvxWCXvEahdd1t0DQd7zF4W29rRH0Bi+ReFlnTwS9Y/ZYZl/fKAR9YNZoZl3XDPgX/E/c4pnhwVNCPkfQiUaGTcjpCDpTz7AJOR9BF1rHZhk3EdchaAP3EfJfI49D0A0Q6ThctoMUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoYUgoaU68vTw2X0IgALL08PFyY0pBA0pBA0pFyX5X3vMXohQI1bw0xoSCFoSPkMmm0HvFq3y4SGFIKGlC9Bs+2AN/fNMqEh5VvQTGl4sdXq5oQmasxur1G2HJCyGzRTGrM6avNwQhM1ZnPWJFsOSDkNmimNWaS0mDShiRqjpTaYvOUgaoyS017WHpqo0Vtuc9l/KSRq9FLSWtFVDqJGa6WNFV+2I2q0UtOWSZSPz69vFq+D2CyGpMkPVpjWqGXVkHmITGvksB6G5j/6ZlojVYtWmsbHtMaWlkOv2zQl7th6fecesj0g7hhGbD+n2O8SuIYZ/v70Hw080Gld7l/NAAAAAElFTkSuQmCC">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%20%22Stashio%22%2C%20%22short_name%22%3A%20%22Stashio%22%2C%20%22description%22%3A%20%22Adopt%20Me%20collection%20tracker%22%2C%20%22display%22%3A%20%22standalone%22%2C%20%22start_url%22%3A%20%22.%22%2C%20%22scope%22%3A%20%22.%22%2C%20%22background_color%22%3A%20%22%230f1729%22%2C%20%22theme_color%22%3A%20%22%235b8def%22%2C%20%22icons%22%3A%20%5B%7B%22src%22%3A%20%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAFj0lEQVR4nO3d21XbQBSFYdkrBYT6SBVxHaSKUB90QB5YJsKWpbmcuZyz/%2B8xK%2BjG3jOSGMNpmczzy9vH6GNAO6%2BXp9PoY1gbejCEHcsythTdd0zosad3GbrtjOAjR68iNN8JwUeN1kVotnGCD0utimC%2BUYKPlqyLcLbcGOFHa9YZM2kTwccIFrNB9QxA%2BDGKRfaqCkD4MVptBosLQPgxi5osFhWA8GM2pZnMLgDhx6xKsplVAMKP2eVmNLkAhB9e5GQ1qQCEH96kZvawAIQfXqVk13QpBODNbgEY/eHdUYYfFoDwI4q9LHMLBGmbBWD0RzSPMs0MAGl3BWD0R1Rb2WYGgLRvBWD0R3S3GWcGgLSvAjD6Q8U668wAkEYBIO28LNz%2BQM8188wAkEYBII0CQBoFgLQTD8BQxgwAaRQA0igApFEASKMAkEYBII0CQBoFgDQKAGkUANJ%2BjD4A7/7%2B/rn577/%2BvHfZT4t9KWEtUKG9QK7VhjN1Pxb7UkQBMuUEci03nKX7KdmXMp4BMtSEMudra/Zj8fVKKEAii1ClbMMqvJQgDQWANAqQwHI03duW9ajNLHCMAkAaBTjQYhTd2mar0ZpZYB8FgDQKAGkUANIoAKRRAEijAAdarKvZ2mar9TusC9oXejl0r6XKUSher5CrQVssVbZ6n360T8v39qnn12tp94xCzQC54bn%2B/4jf2BRcr0DPAK2XKlt801O2YRWuljNNpJ8uhyhAr6XKNeHM%2BdraEvS4zYpSglC3QD1cw9X6vjl3PzX7Uub%2BIdh6JLL66OKsH4offb1mwwxQqVcAvAdtVq6fAXotVY6C63XPdQGAWhQA0igApFEASKMAkOa6AL2WKkfB9brnugBALfcFsByBvI9mKbhe37kvAFAjRAF6LVWOguv1X4gCLEu/pcpRcL0%2BuV8NukX5I34llK9XyAJcKX7Iu4bi9QpdAOBImGcAoAQFgDQKAGl8JLKT3E9ORX7wnAkFaMT6T51SiDYogKGWn49db5sy2KEABnp/MDzirygchQJUGP0bEShCPd4CFRod/rWZjsUbZoBMs4aN2aAMM0CGWcO/5uEYZ0IBEnkKlqdjHY0CJPAYKI/HPAIFOOA5SJ6PvRcKsCNCgCKcQ0sU4IFIwYl0LtYoAKRRgA0RR8yI52SBAkAaBbgReaSMfG6lKACkUQBIowArCrcICueYgwJAGgWANAoAaRQA0igApFEASKMAkEYBII0CrCj8RgWFc8xBASCNAkAaBbgR%2BRYh8rmVogCQRgE2RBwpI56TBQoAaRTggUgjZqRzsUYBdkQIToRzaIkCHPAcIM/H3gsFSOAxSB6PeQQKkMhToDwd62gUIIOHYHk4xpnwJ5IyXQM2229XIPhlmAEKzRS4mY7FG2aACqNnA4JfjwIY6F0Egm%2BHAhhaB9O6DIS%2BDQrQyG1gcwtB4PugAJ0Q6DnxFgjSKACkUQBIowCQRgEgjQJAGgWANAoAaRQA0igApFEASKMAkEYBII0CQBoFgDQKAGkUANIoAKRRAEijAJB2fr08nUYfBDDC6%2BXpxAwAaRQA0igApFEASDsvy%2BfDwOgDAXq6Zp4ZANIoAKR9FYDbIKhYZ50ZANK%2BFYBZANHdZpwZANLuCsAsgKi2ss0MAGmbBWAWQDSPMs0MAGkPC8AsgCj2srw7A1ACeHeUYW6BIO2wAMwC8Colu0kzACWAN6mZTb4FogTwIierWc8AlACzy81o9kMwJcCsSrJZ9BaIEmA2pZksfg1KCTCLmixW/RyAEmC02gxW/yCMEmAUi%2ByZhvf55e3DcnvAFstB13QpBLMBWrPOWLPAMhvAUqvBtfmITRFQo/VdRbdbFoqAHL1up7vfs1ME7On9HDn0oZUyYFnGvjyZ7q0NpYhttjeF/wCIOvIt5XhI6QAAAABJRU5ErkJggg%3D%3D%22%2C%20%22sizes%22%3A%20%22192x192%22%2C%20%22type%22%3A%20%22image/png%22%2C%20%22purpose%22%3A%20%22any%20maskable%22%7D%2C%20%7B%22src%22%3A%20%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAARsklEQVR4nO3d25XbxhIFUMjLAdjxyVHYcchR%2BMYnZ6D7MabEGfEFEkBX19n728vTaIA4BwWO5tNCSZ%2B/fP02eg0AW/jfX79/Gr0GfuakDCLgAd4oCGPY9AMIe4B1lIL92eAdCHyAbSkE27OhGxD4AMdSCF5nA58k9AFqUAaeY9NWEPoAtSkDj7NRdwh9gDkpA7fZnCsEP0APisBlNuWM0AfoTRn4wUYsgh8gjSIQXgAEP0C25CIQeeCCH4BziUUg6oAFPwC3JBWBiAMV/ACskVAEfhm9gL0JfwDWSsiOtg0n4eQBsL%2Bu04B2ByX4AdhDtyLQ6hWA8AdgL90ypkWb6XZSAKitwzRg%2BgmA8AfgaB2yZ%2BoC0OEEADCn2TNoyhHG7JsOQC8zvhKYbgIg/AGoZsZsmqoAzLjBAGSYLaOmGFnMtqkAZJvhlUD5CYDwB2A2M2RX6QIwwwYCwCXVM6xsAai%2BcQBwT%2BUsK1kAKm8YAKxRNdPKFYCqGwUAz6qYbaUKQMUNAoAtVMu4MgWg2sYAwNYqZV2JAlBpQwBgT1Uyb3gBqLIRAHCUCtk3tABU2AAAGGF0Bg4rAKMPHABGG5mFQwqA8AeAN6My8fACIPwB4L0R2XhoARD%2BAHDZ0Rl5WAEQ/gBw25FZeUgBEP4A8JijMnP4vwMAABxv9wLg6R8A1jkiO3ctAMIfAJ6zd4buVgCEPwC8Zs8s9R0AAAi0SwHw9A8A29grUzcvAMIfALa1R7ZuWgCEPwDsY%2BuM9R0AAAi0WQHw9A8A%2B9oyazcpAMIfAI6xVeZ6BQAAgV4uAJ7%2BAeBYW2SvCQAABHqpAHj6B4AxXs3gpwuA8AeAsV7JYq8AACDQUwXA0z8A1PBsJpsAAECg1QXA0z8A1PJMNpsAAECgVQXA0z8A1LQ2o00AACDQwwXA0z8A1LYmq00AACDQQwXA0z8AzOHRzDYBAIBACgAABLpbAIz/AWAuj2S3CQAABLpZADz9A8Cc7mW4CQAABFIAACDQ1QJg/A8Ac7uV5SYAABBIAQCAQBcLgPE/APRwLdNNAAAgkAIAAIF%2BKgDG/wDQy6VsNwEAgEAKAAAEUgAAINC7AuD9PwD09DHjTQAAIJACAACBFAAACPS9AHj/DwC9nWe9CQAABFIAACCQAgAAgRQAAAj0y7L4AiAApDhlvgkAAARSAAAgkAIAAIEUAAAIpAAAQCAFAAACKQAAEOiTfwMAAPKYAABAIAUAAAIpAAAQSAEAgEAKAAAEUgAAIJACAACBFAAACKQAAEAgBQAAAikAABBIAQCAQAoAAARSAAAgkAIAAIEUAAAIpAAAQCAFAAACKQAAEEgBAIBACgAABFIAACDQr6MXAF398%2BdvD/%2B3f/z9727rqOrR/UncGzjCp89fvn4bvQjoYE3g39Mx9Lban457AyMoAPCiLYP/o9nDbs%2B9WZb59wdGUgDgSXuH27nZgu7IvVmW%2BfYHKlAAYKWjw%2B3cDEE3an9m2BuoRAGAFUaG/0nVoKuwN8tSd3%2BgGr8GCA%2BqEnBV1nGu0poqrQUqMwGAOyoHSoWn3ar7U2FvoDITALiharidjF7f6J9/S%2BW1QQUKAFwxS4CMWucM%2BzPDGmEUBQBYbaZgnWmtcCQFAC6YLTSOXO9se7Msc64Z9qYAwAezhsUR6551b5Zl7rXDHhQAODN7SOy5/tn3Zll6HANsRQEAgEAKAPyny9PhHsfRZW%2BWpdexwCsUAAAIpADA0u%2BpcMvj6bY3y9LzmGAtBQAAAikAxOv6NNj1uIBtKADAVZ1LROdjg0coAAAQSAEAgEAKANG6j4FfOb7ue7MsGccI1ygAABBIAQCAQAoAAARSAAAgkAIAAIEUAAAIpAAAQCAFAAACKQAAEEgBAIBACgDR/vj739FL2NUrx9d9b5Yl4xjhGgUAAAIpAAAQSAEAruo8Iu98bPAIBYB4XYOg63EB21AAACCQAgBLv6flLY%2Bn294sS89jgrV%2BHb0Aevnnz98e/m/dhMFnhnE%2Bff7y9dvoRTCvNTeveyrc3LY8nlH22scOe7Ms46%2Bzbp8Z5mUCwFP2CIPT/9NNjY58ZqjGBIBVjnwKHHVTm/lJd%2B89m3lvlmXMNZXwmWFOCgAPGXnj737T3spR%2BzTj3izL8ddR2meG%2BfgtAO4afcMf8fNnu4Eeud7Z9mZZssK/ws9nDgoAN1W5kVRZB29mKgFp4X9SZR3U5RUAF1W%2BeRx5Q6%2B8Dycjw7j6/rhW3sxU2DiOCQA/qXwjWxZfqjo3en2jf/4twv%2BH6utjDBMA3pnpRpE62l2WesFbaW%2BWRfhfU%2B26YSwTAHhQlZtnlXWcq7SmSmuBykwA%2BG6mJ5mTtF8RnCHcRu1P2rXwrBmuIY6hALAsy5w3spOEfzBotpv20deT8F9ntuuJfSgATH0jO%2Bn6TfjZb9R7X1sJ5W8vs19bvM7fAoAXnW6k/sjLz86PY6v96bI3MJoJQLgOTzIn1YLBn3m97dH9qbY3PjN0YQIAO3Fzvc3%2BwFh%2BDTBYpyeZZel3PNTT7RrrdjysowAAQCAFIFTX5t/1uBiv67XV9bi4TwEAgEAKAAAEUgAAIJACEKj7O7/ux8fxul9T3Y%2BPyxQAAAikAABAIAUAAAIpAAAQSAEAgEAKAAAEUgAAIJACAACBFAAACKQAAEAgBSDQH3//O3oJu%2Bp%2BfByv%2BzXV/fi4TAEAgEAKAAAEUgAAIJACEKrrO7%2Bux8V4Xa%2BtrsfFfQoAAARSAIJ1a/7djod6ul1j3Y6HdRQAAAikAITr8gTQ5Tior8u11uU4eJ4CAACBFACmfxKYff3MZ/Zrbvb1sw0FgGVZ5r0hzLpu5jfrtTfrutmeAsB3s90YZlsv/cx2Dc62XvalAABAIAWAd2Z5QphlnfQ3y7U4yzo5jgLAT6rfKKqvjzzVr8nq62OMT5%2B/fP02ehHU9c%2Bfv41ewnduYszAZ4ZZmABwU5UbSJV1wD1VrtUq66AuBYC7Rt9IRv98WGv0NTv65zMHrwBY5cjxppsYHfjMUJUCwFP2vKm5idGRzwzVKAC8ZMubmpsYCXxmqEIBYFNrbm5uXuAzwzgKAAAE8lsAABBIAQCAQAoAAARSAAAgkAIAAIEUAAAIpAAAQCAFAAACKQAAEEgBAIBACgAABPp19AKA7W39p2f9ERroRwGASe359%2BXX/CzlAOakAMAEjgz7tS6tTSmA%2BhQAKKpy6N9zvnZlAGpSAKCImQP/lo/HpRBADQoADNQ19G8xHYAaFAAYIDH4LzntgyIAx1MA4CBC/zpTATieAgA7E/zrmArAMRQA2Ingf40iAPtSAGBjgn9bigDsQwGAjQj%2BfSkCsC1/DAg2IPyPY69hGyYA8AJhNIZpALzOBACeJPzHcw7geSYAsJLQqcU0AJ5jAgArCP%2B6nBtYRwGABwmY%2BpwjeJxXAHCHUJmLVwLwGBMAuEH4z8u5g9sUALhCgMzPOYTrFAC4QHD04VzCZQoAfCAw%2BnFO4WcKAJwRFH05t/CeAgD/ERD9OcfwgwIAi2BI4lzDGwWAeAIhj3MOCgDhBEEu5550CgCxBACuAZIpAAAQSAEgkic/TlwLpFIAiOOGz0euCRIpAERxo%2Bca1wZpFAAACKQAEMMTHve4RkiiABDBjZ1HuVZIoQAAQCAFgPY80bGWa4YECgAABFIAaM2THM9y7dCdAgAAgRQA2vIEx6tcQ3SmAABAIAUAAAIpALRkdMtWXEt0pQAAQCAFgHY8sbE11xQdKQAAEEgBAIBACgAABFIAaMW7Wvbi2qIbBQAAAikAABBIAQCAQAoAAARSAGjDl7TYm2uMThQAAAikAABAIAUAAAIpAAAQSAEAgEAKAAAEUgAAIJACAACBFAAACKQAAEAgBQAAAikAABBIAQCAQAoAbfzx97%2Bjl0BzrjE6UQAAIJACAACBFAAACKQAAEAgBYBWfEmLvbi26EYBAIBACgAABFIAACCQAkA73tWyNdcUHSkAABBIAaAlT2xsxbVEVwoAAARSAAAgkAJAW0a3vMo1RGcKAAAEUgBozRMcz3Lt0J0CAACBFADa8yTHWq4ZEigAABBIASCCJzoe5VohhQJADDd27nGNkEQBAIBACgBRPOFxjWuDNAoAcdzo%2Bcg1QSIFgEhu%2BJy4FkilAABAIAWAWJ78cA2QTAEgmgDI5dyTTgEgniDI45yDAgDLsgiEJM41vFEA4D%2BCoT/nGH5QAOCMgOjLuYX3FAD4QFD045zCzxQAuEBg9OFcwmUKAFwhOObnHMJ1CgDcIEDm5dzBbb%2BOXgBUdwqSf/78beg6eIzgh8eYAMCDBEt9zhE8TgGAFQRMXc4NrOMVAKzklUAtgh%2BeYwIATxI84zkH8DwTAHiBacAYgh9eZwIAGxBIx7HXsA0TANiIacC%2BBD9sSwGAjSkC2xL8sA8FAHaiCLxG8MO%2BFADYmSKwjuCHYygAcJDzYFMG3hP6cDwFAAYwFXgj%2BGEcBQAGSpwKCH2oQQGAIj4GY5dCIPChJgUAipp5OiD0oT4FACZwKVCrlAJhD3NSAGBSt4J363Ig5KEfBQAaEtjAPf4YEAAEUgAAIJACAACBFAAACKQAAEAgBQAAAikAABBIAQCAQAoAAARSAAAgkAIAAIEUAAAIpAAAQCAFAAACKQAAEEgBAIBACgAABFIAACCQAgAAgRQAAAikAABAIAUAAAIpAAAQSAEAgEAKAAAEUgAAIJACAACBFAAACKQAAEAgBQAAAikAABBIAQCAQAoAAARSAAAgkAIAAIEUAAAIpAAAQCAFAAACKQAAEEgBAIBACgAABFIAACCQAgAAgRQAAAikAABAIAUAAAIpAAAQSAEAgEAKAAAEUgAAINAv//vr90%2BjFwEAHOd/f/3%2ByQQAAAIpAAAQSAEAgEAKAAAEUgAAIJACAACBFAAACPTLsrz9PuDohQAA%2BztlvgkAAARSAAAgkAIAAIEUAAAI9L0A%2BCIgAPR2nvUmAAAQSAEAgEAKAAAEelcAfA8AAHr6mPEmAAAQSAEAgEAKAAAE%2BqkA%2BB4AAPRyKdtNAAAgkAIAAIEuFgCvAQCgh2uZbgIAAIEUAAAIdLUAeA0AAHO7leUmAAAQSAEAgEA3C4DXAAAwp3sZbgIAAIHuFgBTAACYyyPZbQIAAIEUAAAI9FAB8BoAAObwaGabAABAoIcLgCkAANS2JqtNAAAg0KoCYAoAADWtzWgTAAAItLoAmAIAQC3PZLMJAAAEeqoAmAIAQA3PZrIJAAAEeroAmAIAwFivZPFLEwAlAADGeDWDvQIAgEAvFwBTAAA41hbZawIAAIE2KQCmAABwjK0yd7MJgBIAAPvaMmu9AgCAQJsWAFMAANjH1hm7%2BQRACQCAbe2Rrbu8AlACAGAbe2Wq7wAAQKDdCoApAAC8Zs8s3XUCoAQAwHP2ztDdXwEoAQCwzhHZ6TsAABDokAJgCgAAjzkqMw%2BbACgBAHDbkVl56CsAJQAALjs6Iw//DoASAADvjcjGIV8CVAIA4M2oTBz2WwBKAADpRmbh0F8DVAIASDU6A4f/OwCjNwAAjlYh%2B4YXgGWpsREAcIQqmVeiACxLnQ0BgL1UyroyBWBZam0MAGypWsaVKgDLUm%2BDAOBVFbOtXAFYlpobBQDPqJppJQvAstTdMAB4VOUsK1sAlqX2xgHALdUzrHQBWJb6GwgAH82QXeUXeO7zl6/fRq8BAK6ZIfhPyk8Azs20sQBkmS2jpioAyzLfBgPQ34zZNN2Cz3klAMBIMwb/yXQTgHMzbzwAc5s9g6YuAMsy/wkAYD4dsmf6AzjnlQAAe%2BoQ/CfTTwDOdToxANTSLWNaHcw50wAAttAt%2BE9aHtQ5RQCAZ3QN/pNWrwAu6X4CAdheQna0P8BzpgEA3JIQ/CcxB3pOEQDgXFLwn8Qd8DlFACBbYvCfxB74OUUAIEty8J/Eb8A5RQCgN8H/g424QhkA6EHoX2ZT7lAEAOYk%2BG%2BzOSsoAwC1Cf3H2agnKQMANQj959i0DSgDAMcS%2Bq%2BzgTtQCAC2JfC3Z0MPoBAArCPw92eDB1EKAN4I%2BzFselEKAtCFgK/p/0m0DQNqx%2B%2BuAAAAAElFTkSuQmCC%22%2C%20%22sizes%22%3A%20%22512x512%22%2C%20%22type%22%3A%20%22image/png%22%2C%20%22purpose%22%3A%20%22any%22%7D%5D%7D">
 <style>
   :root{
     color-scheme:light;
@@ -67,14 +74,18 @@
   .prices-note{display:none;background:var(--note-bg);border:1px solid var(--note-bd);color:var(--note-ink);border-radius:16px;padding:12px 16px;margin:12px 0 4px;font-weight:600;font-size:13.5px}
   body[data-mode="prices"] .prices-note{display:block}
 
+  /* share banner */
+  .sharebanner{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--teal-bg);border:1px solid var(--teal-bd);color:var(--teal-ink);border-radius:16px;padding:12px 16px;margin:14px 0 4px;font-weight:700}
+  .sharebanner .st{flex:1;min-width:180px}
+
   /* portfolios bar */
   .folios{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0 2px}
   .folio{font:inherit;font-weight:800;font-size:13.5px;border:2px solid var(--line);background:var(--card);color:var(--ink);padding:7px 13px;border-radius:999px;cursor:pointer}
   .folio[data-active="1"]{background:var(--brand);color:#fff;border-color:transparent}
   .folio .fc{opacity:.7;font-weight:700;margin-left:5px}
   .folio-new{font:inherit;font-weight:800;font-size:13.5px;border:2px dashed var(--line);background:transparent;color:var(--muted);padding:7px 13px;border-radius:999px;cursor:pointer}
-  .folio-edit{font:inherit;font-weight:700;font-size:12.5px;border:0;background:transparent;color:var(--muted);cursor:pointer;padding:4px 6px}
-  .folio-edit:hover{color:var(--brand-d)}
+  .folio-act{font:inherit;font-weight:700;font-size:12.5px;border:0;background:transparent;color:var(--muted);cursor:pointer;padding:4px 6px}
+  .folio-act:hover{color:var(--brand-d)}
 
   .progress-card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:16px 18px;margin:14px 0}
   .progress-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
@@ -87,6 +98,8 @@
   .rar-mini{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
   .rar-mini .chipstat{font-size:12.5px;font-weight:700;padding:5px 10px;border-radius:999px;background:var(--card2);border:1px solid var(--line)}
   .rar-mini .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .missing-link{display:inline-block;margin-top:10px;font-weight:800;font-size:13px;color:var(--brand-d);cursor:pointer}
+  .missing-link:hover{text-decoration:underline}
 
   .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:8px 0 6px}
   .search{flex:1 1 240px;min-width:200px;display:flex;align-items:center;gap:8px;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:var(--shadow)}
@@ -143,20 +156,19 @@
   .rtag[data-r="legendary"]{background:var(--legendary)}
   .pet .check{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;border:2px solid var(--line);background:var(--card);display:flex;align-items:center;justify-content:center;font-weight:900;color:transparent;font-size:15px}
   .pet[data-owned="1"] .check{background:var(--uncommon);border-color:var(--uncommon);color:#fff}
-  .pet .tagbtn{position:absolute;top:8px;left:8px;width:26px;height:26px;border-radius:8px;border:2px solid var(--line);background:var(--card);cursor:pointer;font-size:12px;line-height:1;display:flex;align-items:center;justify-content:center;padding:0}
-  .pet .tagbtn:hover{border-color:var(--brand)}
-  .pet[data-infolio="1"] .tagbtn{background:var(--brand);border-color:var(--brand)}
+  .pet .infobtn{position:absolute;top:8px;left:8px;width:26px;height:26px;border-radius:8px;border:2px solid var(--line);background:var(--card);cursor:pointer;font-size:13px;font-weight:900;line-height:1;display:flex;align-items:center;justify-content:center;padding:0;color:var(--brand-d)}
+  .pet .infobtn:hover{border-color:var(--brand)}
+  .pet[data-infolio="1"] .infobtn{background:var(--brand);border-color:var(--brand);color:#fff}
   .pet .stepper{display:none;align-items:center;justify-content:center;gap:6px;margin-top:8px}
   .pet[data-owned="1"] .stepper{display:flex}
-  .pet .stepper button{width:26px;height:26px;border-radius:8px;border:2px solid var(--line);background:var(--card);color:var(--ink);font-weight:900;font-size:16px;line-height:1;cursor:pointer;padding:0;touch-action:manipulation;user-select:none;-webkit-user-select:none}
-  .pet .stepper button:hover{border-color:var(--brand)}
-  .pet .qty{font-weight:800;font-size:14px;color:var(--uncommon);min-width:34px;cursor:pointer;user-select:none;-webkit-user-select:none}
-  .pet .qty:hover{text-decoration:underline}
+  .stepper button{width:26px;height:26px;border-radius:8px;border:2px solid var(--line);background:var(--card);color:var(--ink);font-weight:900;font-size:16px;line-height:1;cursor:pointer;padding:0;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+  .stepper button:hover{border-color:var(--brand)}
+  .stepper .qty{font-weight:800;font-size:14px;color:var(--uncommon);min-width:34px;cursor:pointer;user-select:none;-webkit-user-select:none}
+  .stepper .qty:hover{text-decoration:underline}
   .pet .price-btn{display:none;margin-top:8px;width:100%;font:inherit;font-weight:800;font-size:12.5px;border:0;border-radius:10px;padding:8px 6px;background:var(--brand);color:#fff;cursor:pointer}
   .pet .price-btn:hover{filter:brightness(1.05)}
   body[data-mode="prices"] .pet{cursor:default}
   body[data-mode="prices"] .pet .price-btn{display:block}
-  body[data-mode="prices"] .pet .tagbtn,
   body[data-mode="prices"] .pet .stepper{display:none}
   body[data-mode="prices"] .pet .check{pointer-events:none}
   body[data-mode="prices"] .pet[data-owned="0"] .check{display:none}
@@ -164,23 +176,38 @@
   #sentinel{height:1px}
   .empty{text-align:center;color:var(--muted);font-weight:700;padding:50px 0}
 
-  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--toast-bg);color:var(--toast-ink);font-weight:700;font-size:14px;padding:12px 18px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.25s;z-index:80;max-width:90vw;text-align:center}
-  .toast[data-show="1"]{opacity:1;transform:translateX(-50%) translateY(0)}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--toast-bg);color:var(--toast-ink);font-weight:700;font-size:14px;padding:12px 18px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.25s;z-index:210;max-width:90vw;text-align:center}
+  .toast[data-show="1"]{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+  .toast .toastbtn{margin-left:10px;font:inherit;font-weight:800;background:var(--brand);color:#fff;border:0;border-radius:8px;padding:4px 12px;cursor:pointer}
 
-  .modal-bg{position:fixed;inset:0;background:rgba(10,18,35,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:90}
+  .modal-bg{position:fixed;inset:0;background:rgba(10,18,35,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:120}
   .modal-bg[data-open="1"]{display:flex}
-  .modal{background:var(--card);border-radius:22px;box-shadow:0 20px 50px rgba(0,0,0,.4);width:100%;max-width:420px;padding:22px}
+  .modal{background:var(--card);border-radius:22px;box-shadow:0 20px 50px rgba(0,0,0,.4);width:100%;max-width:440px;padding:22px;position:relative;max-height:90vh;overflow:auto}
   .modal h3{margin:0 0 4px;font-size:22px;font-weight:800;color:var(--brand-d)}
-  .modal p{margin:0 0 16px;color:var(--muted);font-weight:600;font-size:14px}
-  .choices{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+  .modal-close{position:absolute;top:12px;right:14px;border:0;background:transparent;color:var(--muted);font-size:20px;font-weight:800;cursor:pointer}
+  .pm-head{display:flex;gap:14px;align-items:center;margin-bottom:14px}
+  .pm-img{width:88px;height:88px;flex:none;display:flex;align-items:center;justify-content:center;background:var(--card2);border-radius:16px}
+  .pm-img img{max-width:80px;max-height:80px;object-fit:contain}
+  .pm-img .noimg{font-size:40px}
+  .pm-facts{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+  .fact{display:flex;justify-content:space-between;gap:12px;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:9px 13px;font-size:14px}
+  .fact span{color:var(--muted);font-weight:700}
+  .fact b{text-align:right}
+  .pm-sub{font-weight:800;font-size:13px;color:var(--muted);margin:2px 0 8px;text-transform:uppercase;letter-spacing:.4px}
+  .pm-own{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .pm-own[data-owned="1"] #pmMark{display:none}
+  .pm-own[data-owned="0"] #pmStepper{display:none}
+  .pm-own #pmStepper{display:flex;align-items:center;gap:10px}
+  .pm-own #pmStepper .qty{font-size:16px;min-width:40px;text-align:center}
+  .pm-own #pmStepper button{width:32px;height:32px;font-size:18px}
+  .choices{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
   .choice{font:inherit;font-weight:800;font-size:14px;border:2px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer}
   .choice[data-active="1"]{background:var(--brand);color:#fff;border-color:transparent}
   .newrow{display:flex;gap:8px;margin-bottom:8px}
   .newrow input{flex:1;font:inherit;font-weight:600;padding:11px 12px;border:2px solid var(--line);border-radius:12px;outline:0;background:var(--card);color:var(--ink)}
   .newrow input:focus{border-color:var(--brand)}
-  .modal .row{display:flex;gap:10px;margin-top:6px}
-  .modal .row .btn{flex:1}
-  .hint{font-size:12.5px;color:var(--muted);font-weight:600;margin-bottom:12px}
+  .modal .pm-prices{width:100%;margin-top:6px}
+  .hint{font-size:12.5px;color:var(--muted);font-weight:600}
 
   .backup{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:28px 0 6px}
   footer{text-align:center;color:var(--muted);font-weight:600;font-size:12.5px;margin-top:10px}
@@ -204,6 +231,12 @@
     💡 Click a pet and <b>Eldorado opens right on that pet</b>. Tick <b>N/M/F/R</b> (or use a quick preset) and it adds the variant to the search — like <b>Ant MFR</b> or <b>Turtle FR</b>. The green check shows which ones you own. Prices come from Eldorado and change all the time.
   </div>
 
+  <div class="sharebanner" id="shareBanner" hidden>
+    <span class="st" id="shareBannerText"></span>
+    <button class="btn" id="shareImport">＋ Save as my list</button>
+    <button class="btn ghost" id="shareExit">✕ Close</button>
+  </div>
+
   <div class="folios" id="folios"></div>
 
   <div class="progress-card">
@@ -213,6 +246,7 @@
     </div>
     <div class="bar"><i id="barFill"></i></div>
     <div class="rar-mini" id="rarMini"></div>
+    <span class="missing-link" id="missingLink">🎯 What am I still missing?</span>
   </div>
 
   <div class="controls">
@@ -270,18 +304,31 @@
   </footer>
 </div>
 
-<!-- lists modal -->
-<div class="modal-bg" id="listModalBg">
+<!-- pet detail modal -->
+<div class="modal-bg" id="petModalBg">
   <div class="modal">
-    <h3 id="listModalTitle">Add to lists</h3>
-    <p>Pick which of your lists this pet belongs to.</p>
-    <div class="choices" id="listChoices"></div>
-    <div class="newrow">
-      <input id="newFolioName" type="text" placeholder="New list name… (e.g. FOR TRADE)" autocomplete="off">
-      <button class="btn" id="newFolioBtn">+ Create</button>
+    <button class="modal-close" id="petClose">✕</button>
+    <div class="pm-head">
+      <div class="pm-img" id="pmImg"></div>
+      <div><h3 id="pmName"></h3><span class="rtag" id="pmRarity"></span></div>
     </div>
-    <div class="hint">A pet can be in more than one list.</div>
-    <div class="row"><button class="btn" id="listDone">Done</button></div>
+    <div class="pm-facts" id="pmFacts"></div>
+    <div class="pm-sub">Do you have it?</div>
+    <div class="pm-own" id="pmOwnWrap" data-owned="0">
+      <button class="btn ghost" id="pmMark">＋ Mark as owned</button>
+      <div id="pmStepper">
+        <button class="minus" id="pmMinus">−</button>
+        <span class="qty" id="pmQty">×0</span>
+        <button class="plus" id="pmPlus">+</button>
+      </div>
+    </div>
+    <div class="pm-sub">Your lists</div>
+    <div class="choices" id="pmChoices"></div>
+    <div class="newrow">
+      <input id="pmNewFolio" type="text" placeholder="New list name… (e.g. FOR TRADE)" autocomplete="off">
+      <button class="btn" id="pmNewFolioBtn">+ Create</button>
+    </div>
+    <button class="btn pm-prices" id="pmPrices">💰 Prices on Eldorado</button>
   </div>
 </div>
 
@@ -299,9 +346,9 @@ const ELDORADO_URL="https://www.eldorado.gg/adopt-me-pets/i/201-2-0";
 function loadLS(k,d){ try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;} }
 function saveLS(k,v){ try{localStorage.setItem(k,JSON.stringify(v));}catch(e){} }
 
-let counts=loadLS(LS_COUNTS,{});            // {petName: number}
-let folios=loadLS(LS_FOLIOS,[]);            // [{id,name}]
-let fitems=loadLS(LS_FITEMS,{});            // {folioId:{petName:true}}
+let counts=loadLS(LS_COUNTS,{});
+let folios=loadLS(LS_FOLIOS,[]);
+let fitems=loadLS(LS_FITEMS,{});
 let variant=loadLS(LS_VAR,{N:false,M:false,F:false,R:false});
 let ui=loadLS(LS_UI,{});
 
@@ -309,6 +356,9 @@ function countOf(k){ return counts[k]||0; }
 function isOwned(k){ return countOf(k)>0; }
 function inFolio(fid,k){ return !!(fitems[fid] && fitems[fid][k]); }
 function petFolioCount(k){ let n=0; for(const f of folios){ if(inFolio(f.id,k)) n++; } return n; }
+
+const PETMAP={};
+BASE_PETS.forEach(p=>{ PETMAP[p.n]=p; });
 
 /* ---------- theme ---------- */
 const themeBtn=document.getElementById('themeBtn');
@@ -330,20 +380,25 @@ let filterR = ui.filterR || "all";
 let query = ui.query || "";
 let sortMode = (ui.sortMode==="name-asc") ? "name-asc" : "rarity-desc";
 let ownFilter = ["owned","missing"].includes(ui.ownFilter) ? ui.ownFilter : "all";
-let folioFilter = ui.folioFilter || null;   // folio id or null (All pets)
+let folioFilter = ui.folioFilter || null;
 if(folioFilter && !folios.some(f=>f.id===folioFilter)) folioFilter=null;
 function saveUI(){ saveLS(LS_UI,{mode,filterR,query,sortMode,ownFilter,folioFilter}); }
 
-function allPets(){ return BASE_PETS.map(p=>({key:p.n,n:p.n,r:p.r,t:p.t})); }
+/* shared view (opened from a share link) */
+let sharedView=null; // {name, set:Set}
+
+function allPets(){ return BASE_PETS.map(p=>({key:p.n,n:p.n,r:p.r,t:p.t,o:p.o,c:p.c,s:p.s,src:p.src})); }
 
 /* ---------- refs ---------- */
 const grid=document.getElementById('grid');
 const emptyEl=document.getElementById('empty');
 const sentinel=document.getElementById('sentinel');
 const ownSeg=document.getElementById('ownSeg');
+const toastEl=document.getElementById('toast');
 
 /* ---------- filter / sort ---------- */
 function petMatches(p){
+  if(sharedView){ if(!sharedView.set.has(p.key)) return false; }
   if(filterR!=="all" && p.r!==filterR) return false;
   if(ownFilter==="missing" && isOwned(p.key)) return false;
   if(ownFilter==="owned" && !isOwned(p.key)) return false;
@@ -373,7 +428,7 @@ function makeCard(p){
     ? `<img src="${escapeAttr(p.t)}" alt="" loading="lazy" onerror="this.parentNode.innerHTML='<div class=&quot;noimg&quot;>🐾</div>'">`
     : `<div class="noimg">🐾</div>`;
   el.innerHTML=`
-    <button class="tagbtn" title="Add to lists">🏷</button>
+    <button class="infobtn" title="Details & lists">i</button>
     <div class="check">✓</div>
     <div class="imgwrap">${img}</div>
     <div class="pname">${escapeHtml(p.n)}</div>
@@ -405,6 +460,7 @@ function renderMore(){
 const io=new IntersectionObserver((es)=>{ if(es[0].isIntersecting && renderedCount<currentList.length) renderMore(); },{rootMargin:"800px"});
 io.observe(sentinel);
 
+let lastComplete={}, milestoneReady=false;
 function updateProgress(){
   const pets=allPets();
   const total=pets.length;
@@ -429,6 +485,18 @@ function updateProgress(){
     const n=r==="all"?total:(perR[r]?perR[r].t:0);
     const nn=c.querySelector('.n'); if(nn) nn.textContent=n;
   });
+  // milestones
+  const now={};
+  RARITY_ORDER.forEach(r=> now[r]= perR[r].t>0 && perR[r].o===perR[r].t);
+  now.all = total>0 && ownedN===total;
+  if(milestoneReady){
+    for(const k in now){ if(now[k] && !lastComplete[k]){
+      confetti();
+      toast(k==='all' ? '🎉 100% COMPLETE — every pet!' : '🎉 '+(RARITY_LABEL[k]||k)+' complete!');
+      break;
+    }}
+  }
+  lastComplete=now; milestoneReady=true;
 }
 
 function updatePriceButtons(){
@@ -438,25 +506,23 @@ function updatePriceButtons(){
 }
 
 /* ---------- counts ---------- */
-function setCount(key,c,cardEl){
-  if(c<=0){ delete counts[key]; } else { counts[key]=c; }
+function setCount(key,c){
+  c=Math.max(0, Math.floor(Number(c))); if(isNaN(c)) c=0;
+  if(c<=0) delete counts[key]; else counts[key]=c;
   saveLS(LS_COUNTS,counts);
-  if(cardEl){
-    cardEl.dataset.owned=isOwned(key)?"1":"0";
-    const q=cardEl.querySelector('.qty'); if(q) q.textContent="×"+countOf(key);
-  }
+  const card=[...grid.children].find(el=>el.dataset && el.dataset.key===key);
+  if(card){ card.dataset.owned=isOwned(key)?"1":"0"; const q=card.querySelector('.qty'); if(q) q.textContent="×"+countOf(key); }
+  if(petModalKey===key) refreshPetOwn();
   updateProgress();
-  // if a filter hides/shows this pet based on owned status, re-render
   if(ownFilter!=="all") render();
 }
-function step(key,delta,cardEl){ setCount(key, Math.max(0, countOf(key)+delta), cardEl); }
+function step(key,delta){ setCount(key, countOf(key)+delta); }
 
-/* hold + or − to repeat */
+/* hold + / − to repeat */
 let holdT=null, holdI=null;
-function startHold(key,delta,cardEl){
-  stopHold();
-  step(key,delta,cardEl);                       // one immediate step
-  holdT=setTimeout(()=>{ holdI=setInterval(()=>step(key,delta,cardEl), 90); }, 350);
+function startHold(key,delta){
+  stopHold(); step(key,delta);
+  holdT=setTimeout(()=>{ holdI=setInterval(()=>step(key,delta), 90); }, 350);
 }
 function stopHold(){ if(holdT)clearTimeout(holdT); if(holdI)clearInterval(holdI); holdT=holdI=null; }
 window.addEventListener('pointerup', stopHold);
@@ -476,8 +542,9 @@ function buildChips(){
   });
 }
 
-/* ---------- portfolios ---------- */
+/* ---------- portfolios bar ---------- */
 function newId(){ return "f"+Date.now()+Math.floor(Math.random()*999); }
+function makeFolio(name){ const id=newId(); folios.push({id,name}); fitems[id]={}; saveLS(LS_FOLIOS,folios); saveLS(LS_FITEMS,fitems); return id; }
 function buildFolios(){
   const bar=document.getElementById('folios');
   let html=`<button class="folio" data-f="__all" data-active="${folioFilter?0:1}">All pets</button>`;
@@ -486,22 +553,24 @@ function buildFolios(){
     html+=`<button class="folio" data-f="${f.id}" data-active="${folioFilter===f.id?1:0}">${escapeHtml(f.name)}<span class="fc">${cnt}</span></button>`;
   }
   html+=`<button class="folio-new" id="folioNew">+ New list</button>`;
-  if(folioFilter){ html+=`<button class="folio-edit" id="folioRename">✎ rename</button><button class="folio-edit" id="folioDelete">🗑 delete</button>`; }
+  if(folioFilter){
+    html+=`<button class="folio-act" id="folioCopy">📋 Copy</button>`;
+    html+=`<button class="folio-act" id="folioShare">🔗 Share</button>`;
+    html+=`<button class="folio-act" id="folioRename">✎ rename</button>`;
+    html+=`<button class="folio-act" id="folioDelete">🗑 delete</button>`;
+  }
   bar.innerHTML=html;
   bar.querySelectorAll('.folio').forEach(b=>{
-    b.addEventListener('click',()=>{
-      folioFilter = b.dataset.f==="__all" ? null : b.dataset.f;
-      saveUI(); buildFolios(); render();
-    });
+    b.addEventListener('click',()=>{ folioFilter = b.dataset.f==="__all"?null:b.dataset.f; saveUI(); buildFolios(); render(); });
   });
-  const nb=document.getElementById('folioNew');
-  nb.addEventListener('click',()=>{
-    const name=(prompt("Name your new list (e.g. FOR TRADE):")||"").trim();
-    if(!name) return;
-    const id=newId(); folios.push({id,name}); fitems[id]={};
-    saveLS(LS_FOLIOS,folios); saveLS(LS_FITEMS,fitems);
-    folioFilter=id; saveUI(); buildFolios(); render();
+  document.getElementById('folioNew').addEventListener('click',()=>{
+    const name=(prompt("Name your new list (e.g. FOR TRADE):")||"").trim(); if(!name) return;
+    folioFilter=makeFolio(name); saveUI(); buildFolios(); render();
   });
+  const cp=document.getElementById('folioCopy');
+  if(cp) cp.addEventListener('click',()=>{ copyText(folioText(folioFilter), '📋 List copied — paste it anywhere!'); });
+  const sh=document.getElementById('folioShare');
+  if(sh) sh.addEventListener('click',()=>{ copyText(shareUrl(folioFilter), '🔗 Share link copied — send it to a friend!'); });
   const rn=document.getElementById('folioRename');
   if(rn) rn.addEventListener('click',()=>{
     const f=folios.find(x=>x.id===folioFilter); if(!f) return;
@@ -517,47 +586,64 @@ function buildFolios(){
     folioFilter=null; saveUI(); buildFolios(); render();
   });
 }
+function folioText(fid){
+  const f=folios.find(x=>x.id===fid); if(!f) return "";
+  const keys=Object.keys(fitems[fid]||{});
+  const pets=allPets().filter(p=>keys.indexOf(p.key)>=0);
+  pets.sort((a,b)=>RARITY_ORDER.indexOf(b.r)-RARITY_ORDER.indexOf(a.r)||a.n.localeCompare(b.n));
+  const lines=[f.name+" ("+pets.length+"):"];
+  for(const p of pets){ const c=countOf(p.key); lines.push("• "+p.n+(c>1?" ×"+c:"")+" ("+RARITY_LABEL[p.r]+")"); }
+  lines.push(""); lines.push("— made with Stashio");
+  return lines.join("\n");
+}
+function shareUrl(fid){
+  const f=folios.find(x=>x.id===fid);
+  const keys=Object.keys(fitems[fid]||{});
+  const payload={n:f.name, p:keys};
+  const b64=btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+  return location.origin+location.pathname+"?s="+encodeURIComponent(b64);
+}
+function copyText(txt, okMsg){
+  try{
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt); toast(okMsg); }
+    else { prompt("Copy this:", txt); }
+  }catch(e){ prompt("Copy this:", txt); }
+}
 
-/* ---------- lists modal ---------- */
-const listModalBg=document.getElementById('listModalBg');
-let listPet=null;
-function openLists(key){
-  listPet=key;
-  document.getElementById('listModalTitle').textContent='Add "'+key+'" to lists';
-  renderListChoices();
-  listModalBg.dataset.open="1";
+/* ---------- shared view ---------- */
+function readShare(){
+  try{
+    const u=new URLSearchParams(location.search).get('s'); if(!u) return null;
+    const j=JSON.parse(decodeURIComponent(escape(atob(u))));
+    if(j && Array.isArray(j.p)) return {name:String(j.n||"Shared list"), set:new Set(j.p)};
+  }catch(e){}
+  return null;
 }
-function closeLists(){
-  listModalBg.dataset.open="0";
-  document.getElementById('newFolioName').value="";
-  buildFolios();
-  render();  // membership may affect current folio view + tag badges
+function enterShared(sv){
+  sharedView=sv;
+  const banner=document.getElementById('shareBanner');
+  document.getElementById('shareBannerText').textContent='👀 Viewing shared list: "'+sv.name+'" — '+sv.set.size+' pet'+(sv.set.size===1?'':'s');
+  banner.hidden=false;
+  folioFilter=null;
+  render();
 }
-function renderListChoices(){
-  const box=document.getElementById('listChoices');
-  if(folios.length===0){ box.innerHTML='<span class="hint">No lists yet — create one below 👇</span>'; return; }
-  box.innerHTML=folios.map(f=>`<button class="choice" data-fid="${f.id}" data-active="${inFolio(f.id,listPet)?1:0}">${escapeHtml(f.name)}</button>`).join("");
-  box.querySelectorAll('.choice').forEach(c=>{
-    c.addEventListener('click',()=>{
-      const fid=c.dataset.fid;
-      if(!fitems[fid]) fitems[fid]={};
-      if(fitems[fid][listPet]) delete fitems[fid][listPet]; else fitems[fid][listPet]=true;
-      saveLS(LS_FITEMS,fitems);
-      c.dataset.active=inFolio(fid,listPet)?"1":"0";
-    });
-  });
+function exitShared(){
+  sharedView=null;
+  document.getElementById('shareBanner').hidden=true;
+  try{ history.replaceState(null,"",location.origin+location.pathname); }catch(e){}
+  render();
 }
-document.getElementById('newFolioBtn').addEventListener('click',()=>{
-  const name=document.getElementById('newFolioName').value.trim();
-  if(!name) return;
-  const id=newId(); folios.push({id,name}); fitems[id]={};
-  if(listPet) fitems[id][listPet]=true;
-  saveLS(LS_FOLIOS,folios); saveLS(LS_FITEMS,fitems);
-  document.getElementById('newFolioName').value="";
-  renderListChoices();
+document.getElementById('shareExit').addEventListener('click',exitShared);
+document.getElementById('shareImport').addEventListener('click',()=>{
+  if(!sharedView) return;
+  const id=makeFolio(sharedView.name);
+  sharedView.set.forEach(k=>{ fitems[id][k]=true; });
+  saveLS(LS_FITEMS,fitems);
+  const nm=sharedView.name;
+  exitShared();
+  folioFilter=id; saveUI(); buildFolios(); render();
+  toast('✅ Saved as your list "'+nm+'"');
 });
-document.getElementById('listDone').addEventListener('click',closeLists);
-listModalBg.addEventListener('click',e=>{ if(e.target===listModalBg) closeLists(); });
 
 /* ---------- variant ---------- */
 function variantCode(){ const neon=variant.M?"M":(variant.N?"N":""); return neon+(variant.F?"F":"")+(variant.R?"R":""); }
@@ -578,52 +664,112 @@ document.querySelectorAll('.vchip').forEach(c=>{
 });
 document.getElementById('vclear').addEventListener('click',()=>{ variant={N:false,M:false,F:false,R:false}; saveLS(LS_VAR,variant); refreshVarChips(); });
 document.querySelectorAll('.vpreset').forEach(b=>{
-  b.addEventListener('click',()=>{
-    const p=b.dataset.p;
-    variant={N:p==="NFR", M:p==="MFR", F:p.includes("F"), R:p.includes("R")};
-    saveLS(LS_VAR,variant); refreshVarChips();
-  });
+  b.addEventListener('click',()=>{ const p=b.dataset.p; variant={N:p==="NFR",M:p==="MFR",F:p.indexOf("F")>=0,R:p.indexOf("R")>=0}; saveLS(LS_VAR,variant); refreshVarChips(); });
 });
 
-/* ---------- grid click ---------- */
-/* press-and-hold on + / − */
+/* ---------- pet detail modal ---------- */
+const petModalBg=document.getElementById('petModalBg');
+let petModalKey=null;
+function openPet(key){
+  const p=PETMAP[key]; if(!p) return;
+  petModalKey=key;
+  document.getElementById('pmImg').innerHTML = p.t
+    ? `<img src="${escapeAttr(p.t)}" alt="" onerror="this.parentNode.innerHTML='<div class=&quot;noimg&quot;>🐾</div>'">`
+    : `<div class="noimg">🐾</div>`;
+  document.getElementById('pmName').textContent=p.n;
+  const rt=document.getElementById('pmRarity'); rt.textContent=RARITY_LABEL[p.r]||p.r; rt.dataset.r=p.r;
+  const facts=[];
+  if(p.o) facts.push(["Origin", p.o]);
+  if(p.src) facts.push(["Comes from", p.src]);
+  if(p.c!=="" && p.c!=null && p.c!==0) facts.push(["Shop price", p.c+" 💵"]);
+  facts.push(["Available now", p.s ? "✅ Yes — in game" : "❌ No — event / retired"]);
+  document.getElementById('pmFacts').innerHTML=facts.map(([k,v])=>`<div class="fact"><span>${escapeHtml(k)}</span><b>${escapeHtml(String(v))}</b></div>`).join("");
+  refreshPetOwn();
+  renderPmChoices();
+  petModalBg.dataset.open="1";
+}
+function refreshPetOwn(){
+  if(!petModalKey) return;
+  const c=countOf(petModalKey);
+  document.getElementById('pmOwnWrap').dataset.owned=c>0?"1":"0";
+  document.getElementById('pmQty').textContent="×"+c;
+}
+function renderPmChoices(){
+  const box=document.getElementById('pmChoices');
+  if(folios.length===0){ box.innerHTML='<span class="hint">No lists yet — create one below 👇</span>'; return; }
+  box.innerHTML=folios.map(f=>`<button class="choice" data-fid="${f.id}" data-active="${inFolio(f.id,petModalKey)?1:0}">${escapeHtml(f.name)}</button>`).join("");
+  box.querySelectorAll('.choice').forEach(c=>{
+    c.addEventListener('click',()=>{
+      const fid=c.dataset.fid;
+      if(!fitems[fid]) fitems[fid]={};
+      if(fitems[fid][petModalKey]) delete fitems[fid][petModalKey]; else fitems[fid][petModalKey]=true;
+      saveLS(LS_FITEMS,fitems);
+      c.dataset.active=inFolio(fid,petModalKey)?"1":"0";
+      const card=[...grid.children].find(el=>el.dataset && el.dataset.key===petModalKey);
+      if(card) card.dataset.infolio=petFolioCount(petModalKey)>0?"1":"0";
+      buildFolios();
+    });
+  });
+}
+function closePet(){ petModalBg.dataset.open="0"; document.getElementById('pmNewFolio').value=""; petModalKey=null; if(folioFilter) render(); }
+document.getElementById('petClose').addEventListener('click',closePet);
+petModalBg.addEventListener('click',e=>{ if(e.target===petModalBg) closePet(); });
+document.getElementById('pmMark').addEventListener('click',()=>{ if(petModalKey) setCount(petModalKey,1); });
+document.getElementById('pmQty').addEventListener('click',()=>{
+  if(!petModalKey) return;
+  const val=prompt("How many of this pet do you have?", countOf(petModalKey));
+  if(val!==null){ const n=Math.floor(Number(val)); if(!isNaN(n)) setCount(petModalKey, Math.max(0,n)); }
+});
+document.getElementById('pmPrices').addEventListener('click',()=>{ if(petModalKey) openEldorado(petModalKey); });
+document.getElementById('pmNewFolioBtn').addEventListener('click',()=>{
+  const name=document.getElementById('pmNewFolio').value.trim(); if(!name) return;
+  const id=makeFolio(name); if(petModalKey) fitems[id][petModalKey]=true; saveLS(LS_FITEMS,fitems);
+  document.getElementById('pmNewFolio').value="";
+  renderPmChoices(); buildFolios();
+  const card=[...grid.children].find(el=>el.dataset && el.dataset.key===petModalKey);
+  if(card) card.dataset.infolio=petFolioCount(petModalKey)>0?"1":"0";
+});
+/* hold on modal +/- */
+['pmPlus','pmMinus'].forEach(id=>{
+  document.getElementById(id).addEventListener('pointerdown',e=>{ e.preventDefault(); if(petModalKey) startHold(petModalKey, id==='pmPlus'?1:-1); });
+});
+
+/* ---------- grid interactions ---------- */
 grid.addEventListener('pointerdown',(e)=>{
-  const plus=e.target.closest('.plus');
-  const minus=e.target.closest('.minus');
+  const plus=e.target.closest('.plus'); const minus=e.target.closest('.minus');
   if(!plus && !minus) return;
   const card=e.target.closest('.pet'); if(!card) return;
-  e.preventDefault();
-  startHold(card.dataset.key, plus?1:-1, card);
+  e.preventDefault(); startHold(card.dataset.key, plus?1:-1);
 });
-
 grid.addEventListener('click',(e)=>{
   const card=e.target.closest('.pet'); if(!card) return;
   const key=card.dataset.key;
-  if(e.target.closest('.plus') || e.target.closest('.minus')) return; // handled by hold
-  if(e.target.closest('.tagbtn')){ openLists(key); return; }
+  if(e.target.closest('.plus')||e.target.closest('.minus')) return;
+  if(e.target.closest('.infobtn')){ openPet(key); return; }
   if(e.target.closest('.qty')){
-    const cur=countOf(key);
-    const val=prompt("How many of this pet do you have?", cur);
-    if(val!==null){ const n=Math.floor(Number(val)); if(!isNaN(n)) setCount(key, Math.max(0,n), card); }
+    const val=prompt("How many of this pet do you have?", countOf(key));
+    if(val!==null){ const n=Math.floor(Number(val)); if(!isNaN(n)) setCount(key, Math.max(0,n)); }
     return;
   }
-  if(mode==="prices"){ openEldorado(card.querySelector('.pname').textContent); return; }
-  // click the card body: check / uncheck, with protection when you own many
+  if(mode==="prices"){ openEldorado(key); return; }
   const c=countOf(key);
-  if(c===0) setCount(key,1,card);
-  else if(c===1) setCount(key,0,card);
-  // c>1 → do nothing on purpose (use − to reduce), so you can't wipe 50 by accident
+  if(c===0) setCount(key,1);
+  else if(c===1) setCount(key,0);
+  // c>1 → protected, do nothing
 });
 
 /* ---------- controls ---------- */
 document.getElementById('search').addEventListener('input',e=>{query=e.target.value.trim().toLowerCase();saveUI();render();});
 document.getElementById('sort').addEventListener('change',e=>{sortMode=e.target.value;saveUI();render();});
 ownSeg.querySelectorAll('button').forEach(b=>{
-  b.addEventListener('click',()=>{
-    ownFilter=b.dataset.o;
-    ownSeg.querySelectorAll('button').forEach(x=>x.dataset.active=x===b?"1":"0");
-    saveUI(); render();
-  });
+  b.addEventListener('click',()=>{ ownFilter=b.dataset.o; ownSeg.querySelectorAll('button').forEach(x=>x.dataset.active=x===b?"1":"0"); saveUI(); render(); });
+});
+document.getElementById('missingLink').addEventListener('click',()=>{
+  ownFilter="missing"; filterR="all"; sortMode="rarity-desc";
+  ownSeg.querySelectorAll('button').forEach(x=>x.dataset.active=x.dataset.o==="missing"?"1":"0");
+  document.getElementById('sort').value="rarity-desc";
+  buildChips(); saveUI(); render();
+  window.scrollTo({top:document.querySelector('.chips').offsetTop-10, behavior:'smooth'});
 });
 
 /* ---------- mode ---------- */
@@ -640,7 +786,12 @@ btnPri.addEventListener('click',()=>setMode("prices"));
 
 /* ---------- eldorado + toast ---------- */
 let toastT=null;
-function toast(msg){ const el=document.getElementById('toast'); el.textContent=msg; el.dataset.show="1"; clearTimeout(toastT); toastT=setTimeout(()=>el.dataset.show="0",2600); }
+function toast(msg){ toastEl.textContent=msg; toastEl.dataset.show="1"; clearTimeout(toastT); toastT=setTimeout(()=>toastEl.dataset.show="0",2600); }
+function toastUndo(msg, fn){
+  toastEl.innerHTML=escapeHtml(msg)+' <button class="toastbtn">Undo</button>';
+  toastEl.querySelector('.toastbtn').onclick=()=>{ fn(); toastEl.dataset.show="0"; };
+  toastEl.dataset.show="1"; clearTimeout(toastT); toastT=setTimeout(()=>toastEl.dataset.show="0",6000);
+}
 function openEldorado(name){
   const code=variantCode();
   const q=code?(name+" "+code):name;
@@ -649,7 +800,28 @@ function openEldorado(name){
   window.open(url,'_blank','noopener');
 }
 
-/* ---------- backup ---------- */
+/* ---------- confetti ---------- */
+function confetti(){
+  const c=document.createElement('canvas');
+  c.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:200';
+  c.width=window.innerWidth; c.height=window.innerHeight; document.body.appendChild(c);
+  const ctx=c.getContext('2d');
+  const cols=['#57c983','#5b8def','#f0a51e','#a25ce6','#ff6b8b','#12b3a3'];
+  const parts=[];
+  for(let i=0;i<140;i++) parts.push({x:Math.random()*c.width,y:-20-Math.random()*c.height*0.4,vx:(Math.random()-0.5)*3,vy:2+Math.random()*4,s:5+Math.random()*7,col:cols[i%cols.length],rot:Math.random()*6,vr:(Math.random()-0.5)*0.35});
+  const start=performance.now();
+  (function frame(now){
+    ctx.clearRect(0,0,c.width,c.height);
+    let alive=false;
+    for(const p of parts){ p.x+=p.vx; p.y+=p.vy; p.vy+=0.03; p.rot+=p.vr;
+      if(p.y<c.height+20) alive=true;
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.fillStyle=p.col; ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*0.6); ctx.restore();
+    }
+    if(alive && now-start<4500) requestAnimationFrame(frame); else c.remove();
+  })(start);
+}
+
+/* ---------- add pet modal removed; backup ---------- */
 function collectSave(){ return {app:"stashio", v:2, date:new Date().toISOString(), counts, folios, fitems, variant}; }
 document.getElementById('exportBtn').addEventListener('click',()=>{
   const blob=new Blob([JSON.stringify(collectSave(),null,2)],{type:'application/json'});
@@ -669,8 +841,8 @@ importFile.addEventListener('change',e=>{
       const d=JSON.parse(rd.result);
       if(!d || typeof d!=="object") throw new Error("bad");
       if(!confirm('Load backup? This will overwrite your current collection and lists.')){ importFile.value=""; return; }
-      if(d.counts && typeof d.counts==="object"){ counts=d.counts; }
-      else if(Array.isArray(d.owned)){ counts={}; d.owned.forEach(k=>counts[k]=1); } // old format
+      if(d.counts && typeof d.counts==="object") counts=d.counts;
+      else if(Array.isArray(d.owned)){ counts={}; d.owned.forEach(k=>counts[k]=1); }
       else counts={};
       folios=Array.isArray(d.folios)?d.folios:[];
       fitems=(d.fitems&&typeof d.fitems==="object")?d.fitems:{};
@@ -685,14 +857,18 @@ importFile.addEventListener('change',e=>{
   rd.readAsText(f);
 });
 
-/* ---------- reset ---------- */
+/* ---------- reset with undo ---------- */
 document.getElementById('resetLink').addEventListener('click',e=>{
   e.preventDefault();
-  if(confirm("Really clear everything — counts and lists? (Better download a backup first.)")){
-    counts={}; folios=[]; fitems={}; folioFilter=null;
-    saveLS(LS_COUNTS,counts); saveLS(LS_FOLIOS,folios); saveLS(LS_FITEMS,fitems); saveUI();
-    buildChips(); buildFolios(); render();
-  }
+  const snap={counts:JSON.parse(JSON.stringify(counts)),folios:JSON.parse(JSON.stringify(folios)),fitems:JSON.parse(JSON.stringify(fitems))};
+  counts={}; folios=[]; fitems={}; folioFilter=null;
+  saveLS(LS_COUNTS,counts); saveLS(LS_FOLIOS,folios); saveLS(LS_FITEMS,fitems); saveUI();
+  buildChips(); buildFolios(); render();
+  toastUndo("Everything cleared.", ()=>{
+    counts=snap.counts; folios=snap.folios; fitems=snap.fitems;
+    saveLS(LS_COUNTS,counts); saveLS(LS_FOLIOS,folios); saveLS(LS_FITEMS,fitems);
+    buildChips(); buildFolios(); render(); toast("↩️ Restored");
+  });
 });
 
 /* ---------- utils ---------- */
@@ -709,7 +885,8 @@ setMode(mode);
 buildChips();
 buildFolios();
 refreshVarChips();
-render();
+const sv=readShare();
+if(sv) enterShared(sv); else render();
 </script>
 </body>
 </html>
